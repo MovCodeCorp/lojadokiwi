@@ -363,7 +363,7 @@ nav a:hover {
 /* =========================================
    SEÇÕES GERAIS E ESPAÇAMENTOS
 ========================================= */
-.vitrine, .vantagens, .depoimentos, .faq, .sugestoes {
+.categorias, .vitrine, .vantagens, .depoimentos, .faq, .sugestoes {
     padding: 80px 0;
 }
 
@@ -396,6 +396,101 @@ nav a:hover {
     font-size: 1rem;
     max-width: 520px;
     margin: 0 auto;
+}
+
+/* =========================================
+   CATEGORIAS
+========================================= */
+.categorias {
+    background: var(--white);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.carousel-categorias {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(260px, 1fr);
+    gap: 20px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    padding: 4px 4px 16px;
+    scrollbar-width: thin;
+}
+
+.categoria-card {
+    min-height: 190px;
+    border-radius: var(--radius-md);
+    padding: 26px;
+    text-decoration: none;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 8px;
+    scroll-snap-align: start;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.categoria-card::before {
+    content: '';
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    right: -40px;
+    top: -40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.42);
+}
+
+.categoria-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.categoria-educacao {
+    background: linear-gradient(135deg, #F0FDF4, #D9F99D);
+}
+
+.categoria-presentes {
+    background: linear-gradient(135deg, #FFF7ED, #FDE68A);
+}
+
+.categoria-icone {
+    width: 58px;
+    height: 58px;
+    border-radius: 18px;
+    background: var(--white);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Baloo 2', cursive;
+    font-weight: 800;
+    color: var(--kiwi-dark);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    z-index: 1;
+}
+
+.categoria-card strong {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.55rem;
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.categoria-card small {
+    color: var(--text-light);
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.4;
+    position: relative;
+    z-index: 1;
 }
 
 /* =========================================
@@ -460,6 +555,52 @@ nav a:hover {
 
 .card-produto:hover .capa-produto img {
     transform: scale(1.05);
+}
+
+.capa-ilustrada {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.capa-ilustrada::before,
+.capa-ilustrada::after {
+    content: '';
+    position: absolute;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.52);
+}
+
+.capa-ilustrada::before {
+    width: 170px;
+    height: 170px;
+    top: -50px;
+    right: -40px;
+}
+
+.capa-ilustrada::after {
+    width: 120px;
+    height: 120px;
+    left: -32px;
+    bottom: -36px;
+}
+
+.capa-educacao {
+    background: linear-gradient(135deg, #DCFCE7, #BBF7D0 52%, #FEF3C7);
+}
+
+.capa-presentes {
+    background: linear-gradient(135deg, #FFE4E6, #FED7AA 55%, #FEF3C7);
+}
+
+.cover-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 3.1rem;
+    line-height: 1;
+    font-weight: 800;
+    color: rgba(28,25,23,0.72);
+    position: relative;
+    z-index: 1;
 }
 
 .placeholder-breve {
@@ -565,6 +706,15 @@ nav a:hover {
     flex-shrink: 0;
 }
 
+.preco-produto {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.55rem;
+    line-height: 1;
+    font-weight: 800;
+    color: var(--text-main);
+    margin: 0 0 18px;
+}
+
 .compra-area {
     margin-top: auto;
 }
@@ -617,6 +767,81 @@ nav a:hover {
     color: var(--text-muted);
     font-weight: 600;
     text-align: center;
+}
+
+.vitrine-actions {
+    margin-top: 32px;
+    text-align: center;
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--text-main);
+    color: var(--white);
+    padding: 13px 24px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-weight: 800;
+    transition: all 0.25s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover {
+    background: var(--kiwi-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* =========================================
+   PÁGINA DE PRODUTOS
+========================================= */
+.page-hero {
+    background: var(--bg-color);
+    padding: 70px 0 48px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.page-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 14px;
+    font-weight: 800;
+}
+
+.page-hero p {
+    max-width: 620px;
+    margin: 0 auto;
+    color: var(--text-light);
+    font-size: 1.05rem;
+}
+
+.catalogo-completo {
+    padding: 72px 0 88px;
+}
+
+.categoria-produtos + .categoria-produtos {
+    margin-top: 72px;
+}
+
+.categoria-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 18px;
+}
+
+.categoria-heading h2 {
+    font-size: 2rem;
+}
+
+.categoria-heading p {
+    color: var(--text-light);
+    max-width: 520px;
 }
 
 /* =========================================
@@ -1060,17 +1285,41 @@ footer {
     }
 
     /* Sections */
-    .vitrine, .vantagens, .depoimentos, .faq, .sugestoes { padding: 64px 0; }
+    .categorias, .vitrine, .vantagens, .depoimentos, .faq, .sugestoes { padding: 64px 0; }
 
     .section-title { margin-bottom: 32px; }
     .section-title h2 { font-size: 1.8rem; }
     .section-title p { font-size: 0.95rem; }
+
+    .carousel-categorias {
+        grid-auto-columns: 82%;
+        gap: 14px;
+        margin-right: -20px;
+        padding-right: 20px;
+    }
+
+    .categoria-card {
+        min-height: 175px;
+        padding: 22px;
+    }
 
     /* Grids */
     .grid-produtos { grid-template-columns: 1fr; gap: 24px; }
     .capa-produto { height: 200px; }
     .info-produto { padding: 20px; }
     .itens-lista { grid-template-columns: 1fr; }
+    .vitrine-actions .btn-secondary { width: 100%; }
+    .page-hero { padding: 52px 0 36px; }
+    .page-hero h1 { font-size: 2.15rem; }
+    .catalogo-completo { padding: 56px 0 68px; }
+    .categoria-produtos + .categoria-produtos { margin-top: 56px; }
+    .categoria-heading {
+        display: block;
+    }
+    .categoria-heading h2 {
+        font-size: 1.7rem;
+        margin-bottom: 8px;
+    }
 
     .grid-vantagens { grid-template-columns: 1fr; gap: 16px; }
     .item-vantagem { padding: 20px 16px; }

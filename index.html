@@ -22,6 +22,8 @@
             </button>
             <nav id="navMenu">
                 <a href="#vitrine">Materiais</a>
+                <a href="produtos.html">Produtos</a>
+                <a href="#categorias">Categorias</a>
                 <a href="#vantagens">Vantagens</a>
                 <a href="#faq">Dúvidas</a>
                 <a href="#sugestoes">Contato</a> 
@@ -88,6 +90,28 @@
             <div class="trust-item">Arquivos em alta qualidade</div>
         </div>
     </div>
+
+    <section id="categorias" class="categorias">
+        <div class="container">
+            <div class="section-title">
+                <span class="section-label">Categorias</span>
+                <h2>Escolha pelo tipo de material</h2>
+                <p>Produtos digitais separados por finalidade para você encontrar mais rápido o que precisa.</p>
+            </div>
+            <div class="carousel-categorias" aria-label="Categorias de produtos">
+                <a href="produtos.html#educacao" class="categoria-card categoria-educacao">
+                    <span class="categoria-icone">ABC</span>
+                    <strong>Educação</strong>
+                    <small>Atividades, jogos e materiais infantis imprimíveis.</small>
+                </a>
+                <a href="produtos.html#presentes" class="categoria-card categoria-presentes">
+                    <span class="categoria-icone">♥</span>
+                    <strong>Presentes</strong>
+                    <small>Cartões, tags e mimos personalizados para imprimir.</small>
+                </a>
+            </div>
+        </div>
+    </section>
  
     <section id="vitrine" class="vitrine">
         <div class="container">
@@ -96,52 +120,9 @@
                 <h2>Materiais prontos para usar</h2>
                 <p>Acesso imediato aos arquivos para você imprimir de onde estiver.</p>
             </div>
-            <div class="grid-produtos">
-                <div class="card-produto destaque">
-                    <div class="badge-destaque">Mais vendido</div>
-                    <div class="capa-produto">
-                        <img src="arcadenoe.png" alt="Capa do Kit">
-                        <span class="badge-novo">Lançamento</span>
-                    </div>
-                    <div class="info-produto">
-                        <div class="tags-produto">
-                            <span class="tag">Imprimível</span>
-                            <span class="tag">Alta Resolução</span>
-                        </div>
-                        <h3>Kit de Atividades</h3>
-                        <h4>Tema: Arca de Noé</h4>
-                        <p class="desc">Material completo com páginas para colorir, labirintos, caça-palavras e jogos. Arquivos otimizados para garantir a melhor qualidade de impressão.</p>
-                        <ul class="itens-lista">
-                            <li>Formato A4 otimizado</li>
-                            <li>Pronto para impressão</li>
-                            <li>Design exclusivo</li>
-                            <li>Acesso vitalício</li>
-                        </ul>
-                        <div class="compra-area">
-                            <a href="https://pay.kiwify.com.br/ZAxsAjo" class="btn-buy-large" target="_blank">Adquirir Material</a>
-                            <p class="compra-segura">Pagamento 100% seguro</p>
-                        </div>
-                    </div>
-                </div>
- 
-                <div class="card-produto coming-soon">
-                    <div class="capa-produto placeholder-breve">
-                        <div class="coming-soon-inner">
-                            <p class="em-breve-label">Em breve</p>
-                        </div>
-                    </div>
-                    <div class="info-produto">
-                        <div class="tags-produto">
-                            <span class="tag tag-soon">Em desenvolvimento</span>
-                        </div>
-                        <h3>Novos materiais chegando</h3>
-                        <h4>Expansão do catálogo</h4>
-                        <p class="desc">Nossa equipe de design está preparando novos arquivos com qualidade premium para facilitar o seu dia a dia.</p>
-                        <div class="compra-area">
-                            <a href="#sugestoes" class="btn-notify">Me avise quando lançar</a>
-                        </div>
-                    </div>
-                </div>
+            <div id="produtos-destaque" class="grid-produtos"></div>
+            <div class="vitrine-actions">
+                <a href="produtos.html" class="btn-secondary">Ver todos os produtos</a>
             </div>
         </div>
     </section>
@@ -296,6 +277,8 @@
             <div class="footer-links">
                 <h4>Navegação</h4>
                 <a href="#vitrine">Materiais</a>
+                <a href="produtos.html">Produtos</a>
+                <a href="#categorias">Categorias</a>
                 <a href="#vantagens">Vantagens</a>
                 <a href="#faq">Dúvidas</a>
             </div>
@@ -305,7 +288,6 @@
                 <a href="https://wa.me/5516982157266?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Loja%20do%20Kiwi%20e%20tenho%20uma%20d%C3%BAvida%3A" target="_blank">WhatsApp</a>
                 <a href="termosdeuso.html">Termos de Uso</a>
             </div>
-            </div>
         </div>
         <div class="footer-bottom">
             <div class="container">
@@ -314,6 +296,8 @@
         </div>
     </footer>
  
+    <script src="produtos.js"></script>
+    <script src="catalogo.js"></script>
     <script>
         const menuToggle = document.getElementById('menuToggle');
         const navMenu = document.getElementById('navMenu');

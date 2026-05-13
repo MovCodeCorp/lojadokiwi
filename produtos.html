@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos | Loja do Kiwi</title>
+    <link rel="icon" type="image/svg+xml" href="pin.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ 
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html"><img src="logo.svg" alt="Loja do Kiwi" class="logo-img"></a>
+            </div>
+            <button class="menu-toggle" id="menuToggle">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+            <nav id="navMenu">
+                <a href="index.html">Início</a>
+                <a href="#educacao">Educação</a>
+                <a href="#presentes">Presentes</a>
+                <a href="index.html#sugestoes">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <span class="section-label">Catálogo completo</span>
+                <h1>Todos os produtos</h1>
+                <p>Materiais digitais prontos para baixar, imprimir e usar em casa, na escola, igreja, festas e momentos especiais.</p>
+            </div>
+        </section>
+
+        <section class="catalogo-completo">
+            <div class="container">
+                <div id="catalogo-produtos"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <img src="logo.svg" alt="Loja do Kiwi" class="footer-logo-img">
+                <p>A sua gráfica digital. Praticidade, qualidade de impressão e design inteligente para o seu dia a dia.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navegação</h4>
+                <a href="index.html">Início</a>
+                <a href="#educacao">Educação</a>
+                <a href="#presentes">Presentes</a>
+            </div>
+            <div class="footer-links">
+                <h4>Atendimento</h4>
+                <a href="https://www.instagram.com/kiq.ham" target="_blank">Instagram</a>
+                <a href="https://wa.me/5516982157266?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Loja%20do%20Kiwi%20e%20tenho%20uma%20d%C3%BAvida%3A" target="_blank">WhatsApp</a>
+                <a href="termosdeuso.html">Termos de Uso</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Loja do Kiwi. Pagamento seguro via <a href="https://kiwify.com.br/" target="_blank" style="color: var(--kiwi-dark); text-decoration: none; font-weight: 800;">Kiwify</a>.</p>
+            </div>
+        </div>
+    </footer>
+ 
+    <script src="produtos.js"></script>
+    <script src="catalogo.js"></script>
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
