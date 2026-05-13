@@ -1,6 +1,6 @@
 window.produtosLojaKiwi = [
     {
-        nome: "Kit de Atividades",
+        nome: "Kit de Atividades Bíblicas",
         subtitulo: "Tema: Arca de Noé",
         categoria: "educacao",
         categoriaNome: "Educação",
