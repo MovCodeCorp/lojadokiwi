@@ -553,6 +553,25 @@ nav a:hover {
     transition: transform 0.4s ease;
 }
 
+.capa-produto.imagem-indisponivel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #F0FDF4, #FEF3C7);
+}
+
+.capa-produto.imagem-indisponivel::after {
+    content: attr(data-fallback);
+    font-family: 'Baloo 2', cursive;
+    font-size: 2rem;
+    line-height: 1.05;
+    font-weight: 800;
+    color: rgba(28,25,23,0.66);
+    text-align: center;
+    max-width: 82%;
+    overflow-wrap: anywhere;
+}
+
 .card-produto:hover .capa-produto img {
     transform: scale(1.05);
 }
@@ -817,6 +836,10 @@ nav a:hover {
     font-size: 1.05rem;
 }
 
+.page-hero-compacto {
+    padding: 48px 0 34px;
+}
+
 .catalogo-completo {
     padding: 72px 0 88px;
 }
@@ -943,6 +966,178 @@ nav a:hover {
 
 .btn-catalogo-secundario:hover {
     background: var(--kiwi-deeper);
+}
+
+.catalogo-capa {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.produto-detalhe {
+    max-width: 1040px;
+    margin: 0 auto;
+}
+
+.voltar-catalogo {
+    display: inline-flex;
+    align-items: center;
+    color: var(--kiwi-dark);
+    text-decoration: none;
+    font-weight: 800;
+    margin-bottom: 22px;
+}
+
+.voltar-catalogo::before {
+    content: "<";
+    margin-right: 8px;
+}
+
+.detalhe-hero {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.92fr) minmax(320px, 1.08fr);
+    gap: 38px;
+    align-items: stretch;
+}
+
+.detalhe-galeria {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.detalhe-galeria .capa-produto {
+    height: 100%;
+    min-height: 460px;
+}
+
+.detalhe-galeria .capa-produto img {
+    object-fit: cover;
+}
+
+.detalhe-galeria .cover-title {
+    font-size: 4rem;
+}
+
+.detalhe-resumo {
+    padding: 8px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.detalhe-resumo .section-label {
+    margin-top: 6px;
+}
+
+.detalhe-resumo h1 {
+    font-size: 2.65rem;
+    margin-bottom: 6px;
+}
+
+.detalhe-resumo h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.45;
+    color: var(--kiwi-dark);
+    margin-bottom: 18px;
+}
+
+.detalhe-resumo > p:not(.preco-produto):not(.compra-segura) {
+    color: var(--text-light);
+    font-size: 1.02rem;
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+.detalhe-resumo .preco-produto {
+    font-size: 2rem;
+    margin-top: auto;
+}
+
+.detalhe-resumo .compra-area {
+    width: 100%;
+}
+
+.detalhe-compra {
+    font-size: 1.02rem;
+    padding: 16px;
+}
+
+.detalhe-conteudo {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 46px;
+}
+
+.detalhe-bloco {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 24px;
+}
+
+.detalhe-bloco h2 {
+    font-size: 1.45rem;
+    margin-bottom: 14px;
+}
+
+.detalhe-lista {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+}
+
+.detalhe-lista li {
+    color: var(--text-light);
+    font-weight: 650;
+    line-height: 1.45;
+    display: flex;
+    gap: 9px;
+}
+
+.detalhe-lista li::before {
+    content: "✓";
+    color: var(--kiwi-dark);
+    font-weight: 900;
+    flex-shrink: 0;
+}
+
+.detalhe-passos {
+    display: grid;
+    gap: 12px;
+}
+
+.detalhe-passo {
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    gap: 12px;
+    align-items: start;
+}
+
+.detalhe-passo span {
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    background: var(--kiwi-green);
+    color: var(--white);
+    font-weight: 900;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detalhe-passo p {
+    color: var(--text-light);
+    font-weight: 650;
+    line-height: 1.45;
+    padding-top: 5px;
+}
+
+.detalhe-relacionados {
+    margin-top: 58px;
 }
 
 /* =========================================
@@ -1476,6 +1671,35 @@ footer {
 
     .produto-catalogo:hover {
         transform: none;
+    }
+
+    .detalhe-hero {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .detalhe-galeria .capa-produto {
+        min-height: 0;
+        aspect-ratio: 1 / 1;
+    }
+
+    .detalhe-resumo h1 {
+        font-size: 2rem;
+    }
+
+    .detalhe-resumo .preco-produto {
+        font-size: 1.65rem;
+        margin-top: 0;
+    }
+
+    .detalhe-conteudo {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-top: 32px;
+    }
+
+    .detalhe-bloco {
+        padding: 20px;
     }
 
     .grid-vantagens { grid-template-columns: 1fr; gap: 16px; }

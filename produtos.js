@@ -7,8 +7,12 @@ window.produtosLojaKiwi = [
         preco: "R$ 14,99",
         descricao: "Material completo com páginas para colorir, labirintos, caça-palavras e jogos. Arquivos otimizados para garantir a melhor qualidade de impressão.",
         descricaoCatalogo: "Páginas para colorir, labirintos, caça-palavras e jogos em formato A4 pronto para impressão.",
+        descricaoDetalhada: "Um kit digital pronto para imprimir e usar com crianças em aulas, cultos infantis, atividades em casa ou reforço bíblico. O material reúne propostas simples, visuais e lúdicas para trabalhar a história da Arca de Noé com mais participação.",
         tags: ["Imprimível", "Alta Resolução"],
         itens: ["Formato A4 otimizado", "Pronto para impressão", "Design exclusivo", "Acesso vitalício"],
+        idealPara: ["Ministério infantil", "Escola bíblica dominical", "Atividades em casa", "Aulas e encontros com crianças"],
+        comoUsar: ["Finalize a compra pela Kiwify.", "Baixe o arquivo digital recebido após a confirmação.", "Imprima em folha A4 comum ou papel de maior gramatura.", "Use as atividades em sala, em casa ou em lembrancinhas educativas."],
+        observacoes: ["Produto digital: nenhum item físico será enviado.", "As cores podem variar conforme impressora, papel e configuração de tela.", "Você pode imprimir quantas vezes precisar para uso pessoal, familiar, escolar ou ministerial."],
         imagem: "imagens/arcadenoe.png",
         imagemAlt: "Capa do Kit Arca de Noé",
         badge: "Lançamento",
@@ -26,6 +30,7 @@ window.produtosLojaKiwi = [
         preco: "R$ 14,99",
         descricao: "Kit infantil com atividades educativas e bíblicas para ensinar às crianças sobre Deus de forma divertida. Inclui labirinto, caça-palavras, ligue os pares, atividades de contagem, desenho e muito mais.",
         descricaoCatalogo: "Atividades bíblicas infantis em formato A4 prontas para impressão, desenvolvidas para ministério infantil e EBD.",
+        descricaoDetalhada: "Um material cristão infantil para apresentar conceitos sobre Deus de forma acessível, colorida e participativa. As atividades foram pensadas para crianças que aprendem melhor quando desenham, procuram, contam, ligam e interagem com o conteúdo.",
         tags: ["PDF Digital", "Pronto para Imprimir"],
         itens: [
             "Arquivo em PDF",
@@ -35,6 +40,9 @@ window.produtosLojaKiwi = [
             "Ideal para ministério infantil",
             "Acesso vitalício"
         ],
+        idealPara: ["Crianças em fase de alfabetização", "Ministério infantil", "Escola bíblica dominical", "Pais que desejam atividades cristãs em casa"],
+        comoUsar: ["Compre o arquivo digital com pagamento seguro.", "Baixe o PDF na plataforma.", "Imprima as páginas que desejar no tamanho A4.", "Separe lápis de cor, giz ou canetinhas e aplique as atividades."],
+        observacoes: ["Produto entregue em formato digital.", "Não inclui envio impresso.", "O acesso é vitalício para baixar e imprimir novamente quando precisar."],
         imagem: "imagens/quemeDeus.png",
         imagemAlt: "Capa do Kit Quem é Deus",
         badge: "Novo",
@@ -43,6 +51,124 @@ window.produtosLojaKiwi = [
         textoCompra: "Adquirir Material",
         textoSeguro: "Pagamento 100% seguro",
         mostrarNaInicial: true
+    },
+    {
+        nome: "Lembrancinha Dia das Mães",
+        subtitulo: "Você é um diamante lapidado por Deus",
+        categoria: "presentes",
+        categoriaNome: "Presentes",
+        preco: "R$ 6,99",
+        descricao: "Arquivo digital especial para o Dia das Mães com lembrancinha delicada e pronta para impressão. Ideal para igrejas, ministério infantil, escolas e homenagens cristãs.",
+        descricaoCatalogo: "Lembrancinha cristã para o Dia das Mães com arquivo PDF, SVG e versão para corte na Silhouette.",
+        descricaoDetalhada: "Uma lembrancinha cristã delicada para homenagear mães em igrejas, escolas e encontros especiais. O arquivo foi preparado para facilitar a impressão, o corte e a montagem, com formatos úteis para quem faz manualmente ou usa máquina de corte.",
+        tags: ["PDF Digital", "Arquivo de Corte"],
+        itens: [
+            "Arquivo PDF pronto para impressão",
+            "Arquivo SVG incluso",
+            "Arquivo Silhouette Studio",
+            "Mockup de exemplo",
+            "Alta resolução",
+            "Pronto para imprimir e montar"
+        ],
+        idealPara: ["Dia das Mães na igreja", "Homenagens escolares", "Ministério infantil", "Lembrancinhas cristãs"],
+        comoUsar: ["Baixe os arquivos após a compra.", "Escolha entre imprimir o PDF ou usar o arquivo de corte.", "Corte, vinque e monte conforme o acabamento desejado.", "Finalize com embalagem, doce, mensagem ou pequeno mimo."],
+        observacoes: ["Produto digital para impressão e montagem.", "Não acompanha materiais físicos.", "Antes de cortar em máquina, confira medidas e configurações do seu equipamento."],
+        imagem: "imagens/diamantemaes.png",
+        imagemAlt: "Lembrancinha Dia das Mães",
+        badge: "Dia das Mães",
+        destaque: "Mais procurado",
+        linkCompra: "SEU_LINK_DA_KIWIFY",
+        textoCompra: "Adquirir Material",
+        textoSeguro: "Pagamento 100% seguro",
+        mostrarNaInicial: true
+    },
+    {
+        nome: "Suspiros de Amor",
+        subtitulo: "Tag delicada para lembrancinhas",
+        categoria: "presentes",
+        categoriaNome: "Presentes",
+        preco: "R$ 4,99",
+        descricao: "Kit digital com tag delicada para personalizar embalagens de suspiros, doces e pequenos mimos. Arquivos otimizados para garantir a melhor qualidade de impressão.",
+        descricaoCatalogo: "Tag digital pronta para impressão e corte para personalizar lembrancinhas, doces e embalagens.",
+        descricaoDetalhada: "Um arquivo digital delicado e fácil de usar para transformar lembrancinhas simples em algo mais especial. Ideal para suspiros, doces, pequenos presentes e embalagens personalizadas em casamentos, encontros, igrejas, aniversários e datas comemorativas.",
+        tags: ["PDF Digital", "Arquivo de Corte"],
+        itens: [
+            "Arquivo PDF pronto para impressão",
+            "Arquivo SVG incluso",
+            "Arquivo Silhouette Studio",
+            "Mockup de exemplo",
+            "Alta resolução",
+            "Pronto para imprimir e montar"
+        ],
+        idealPara: [
+            "Lembrancinhas personalizadas",
+            "Casamentos e noivados",
+            "Eventos de igreja",
+            "Presentes e pequenos mimos"
+        ],
+        comoUsar: [
+            "Finalize a compra pela Kiwify.",
+            "Baixe os arquivos digitais após a confirmação do pagamento.",
+            "Imprima em papel de sua preferência.",
+            "Recorte manualmente ou utilize máquina de corte.",
+            "Use nas embalagens de suspiros, doces ou lembrancinhas."
+        ],
+        observacoes: [
+            "Produto digital: nenhum item físico será enviado.",
+            "As cores podem variar conforme impressora, papel e configuração de tela.",
+            "Uso permitido para fins pessoais e pequenos trabalhos personalizados."
+        ],
+        imagem: "imagens/suspirosdeamor.png",
+        imagemAlt: "Tag Suspiros de Amor",
+        badge: "Lembrancinha",
+        destaque: "Delicado",
+        linkCompra: "SEU_LINK_DA_KIWIFY",
+        textoCompra: "Adquirir Material",
+        textoSeguro: "Pagamento 100% seguro",
+    },
+    {
+        nome: "Hot Wheels Personalizado",
+        subtitulo: "Arquivo editável para imprimir e montar",
+        categoria: "presentes",
+        categoriaNome: "Presentes",
+        preco: "R$ 19,99",
+        descricao: "Arquivo digital editável para criar mini Hot Wheels personalizados com foto. Arquivos otimizados para garantir uma impressão de alta qualidade e montagem prática.",
+        descricaoCatalogo: "Arquivo digital editável pronto para personalizar, imprimir e montar mini Hot Wheels personalizados.",
+        descricaoDetalhada: "Um arquivo digital criativo e totalmente editável para montar mini embalagens estilo Hot Wheels personalizadas com fotos, frases e nomes. Ideal para presentear namorados, casais, pais, amigos ou apaixonados por carros de forma única e divertida.",
+        tags: ["Arquivo Digital", "Canva Editável"],
+        itens: [
+            "Canva editável",
+            "Arquivo PDF pronto para impressão",
+            "Arquivo SVG incluso",
+            "Arquivo Silhouette Studio",
+            "Mockup de exemplo",
+            "Tutorial rápido de montagem"
+        ],
+        idealPara: [
+            "Presentes para namorado(a)",
+            "Datas comemorativas",
+            "Lembranças criativas",
+            "Apaixonados por carros"
+        ],
+        comoUsar: [
+            "Finalize a compra pela Kiwify.",
+            "Acesse o arquivo editável enviado após a confirmação do pagamento.",
+            "Personalize com suas fotos, frases ou nomes.",
+            "Imprima em papel de maior gramatura para melhor acabamento.",
+            "Recorte e monte seguindo o tutorial incluso."
+        ],
+        observacoes: [
+            "Produto digital: nenhum item físico será enviado.",
+            "As cores podem variar conforme impressora, papel e configuração de tela.",
+            "É necessário possuir conta gratuita no Canva para editar o arquivo."
+        ],
+        imagem: "imagens/hotwheelspersonalizado.png",
+        imagemAlt: "Mini Hot Wheels Personalizado",
+        badge: "Arquivo Digital",
+        destaque: "Editável",
+        linkCompra: "SEU_LINK_DA_KIWIFY",
+        textoCompra: "Adquirir Arquivo",
+        textoSeguro: "Produto 100% digital",
     },
     {
         nome: "Números e Quantidades",
@@ -73,7 +199,6 @@ window.produtosLojaKiwi = [
         capaTexto: "Gift",
         badge: "Presentes",
         linkConsulta: "https://wa.me/5516982157266?text=Ol%C3%A1!%20Tenho%20interesse%20nos%20Cart%C3%B5es%20para%20Presentes.",
-        mostrarNaInicial: true
     },
     {
         nome: "Tags para Lembrancinhas",
