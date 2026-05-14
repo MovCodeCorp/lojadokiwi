@@ -9,7 +9,7 @@ window.produtosLojaKiwi = [
         descricaoCatalogo: "Páginas para colorir, labirintos, caça-palavras e jogos em formato A4 pronto para impressão.",
         tags: ["Imprimível", "Alta Resolução"],
         itens: ["Formato A4 otimizado", "Pronto para impressão", "Design exclusivo", "Acesso vitalício"],
-        imagem: "arcadenoe.png",
+        imagem: "imagens/arcadenoe.png",
         imagemAlt: "Capa do Kit Arca de Noé",
         badge: "Lançamento",
         destaque: "Mais vendido",
@@ -35,7 +35,7 @@ window.produtosLojaKiwi = [
             "Ideal para ministério infantil",
             "Acesso vitalício"
         ],
-        imagem: "quemeDeus.png",
+        imagem: "imagens/quemeDeus.png",
         imagemAlt: "Capa do Kit Quem é Deus",
         badge: "Novo",
         destaque: "Ministério Infantil",

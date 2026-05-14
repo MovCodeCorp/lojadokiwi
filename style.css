@@ -844,6 +844,107 @@ nav a:hover {
     max-width: 520px;
 }
 
+.pagina-produtos .catalogo-completo {
+    background: var(--white);
+}
+
+.pagina-produtos .grid-produtos {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 22px;
+    align-items: start;
+}
+
+.produto-catalogo {
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.produto-catalogo:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.catalogo-capa .capa-produto {
+    aspect-ratio: 1 / 1;
+    height: auto;
+    min-height: 0;
+}
+
+.catalogo-capa .capa-produto img {
+    object-fit: cover;
+}
+
+.catalogo-capa .cover-title {
+    font-size: 2rem;
+    max-width: 92%;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+.catalogo-info {
+    padding: 12px 14px 16px;
+    text-align: center;
+}
+
+.catalogo-info h3 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.25;
+    font-weight: 700;
+    margin-bottom: 3px;
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.catalogo-subtitulo {
+    color: var(--text-light);
+    font-size: 0.74rem;
+    line-height: 1.25;
+    min-height: 18px;
+    margin-bottom: 9px;
+}
+
+.catalogo-info .preco-produto {
+    font-size: 1.08rem;
+    margin-bottom: 14px;
+}
+
+.btn-catalogo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 28px;
+    width: 100%;
+    border-radius: 999px;
+    background: var(--kiwi-green);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.82rem;
+    line-height: 1.1;
+    font-weight: 800;
+    padding: 7px 10px;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-catalogo:hover {
+    background: var(--kiwi-dark);
+    transform: translateY(-1px);
+}
+
+.btn-catalogo-secundario {
+    background: var(--text-main);
+}
+
+.btn-catalogo-secundario:hover {
+    background: var(--kiwi-deeper);
+}
+
 /* =========================================
    VANTAGENS
 ========================================= */
@@ -1319,6 +1420,62 @@ footer {
     .categoria-heading h2 {
         font-size: 1.7rem;
         margin-bottom: 8px;
+    }
+
+    .pagina-produtos .catalogo-completo {
+        padding: 36px 0 56px;
+    }
+
+    .pagina-produtos .grid-produtos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .pagina-produtos .categoria-produtos + .categoria-produtos {
+        margin-top: 42px;
+    }
+
+    .pagina-produtos .categoria-heading {
+        margin-bottom: 18px;
+    }
+
+    .produto-catalogo {
+        border-radius: 7px;
+    }
+
+    .catalogo-capa .cover-title {
+        font-size: 1.35rem;
+    }
+
+    .catalogo-info {
+        padding: 10px 8px 12px;
+    }
+
+    .catalogo-info h3 {
+        font-size: 0.82rem;
+        min-height: 42px;
+        margin-bottom: 2px;
+    }
+
+    .catalogo-subtitulo {
+        font-size: 0.68rem;
+        min-height: 18px;
+        margin-bottom: 8px;
+    }
+
+    .catalogo-info .preco-produto {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .btn-catalogo {
+        min-height: 30px;
+        font-size: 0.72rem;
+        padding: 7px 8px;
+    }
+
+    .produto-catalogo:hover {
+        transform: none;
     }
 
     .grid-vantagens { grid-template-columns: 1fr; gap: 16px; }

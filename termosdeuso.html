@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Termos de Uso | Loja do Kiwi</title>
-    <link rel="icon" type="image/svg+xml" href="pin.svg">
+    <link rel="icon" type="image/svg+xml" href="imagens/pin.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="style.css">
     <style>
         .page-header {
@@ -53,7 +55,7 @@
     <header>
         <div class="container header-container">
             <div class="logo">
-                <a href="index.html"><img src="kiwi.svg" alt="Loja do Kiwi" class="logo-img"></a>
+                <a href="index.html"><img src="imagens/kiwi.svg" alt="Loja do Kiwi" class="logo-img"></a>
             </div>
             <nav id="navMenu" style="display: flex;">
                 <a href="index.html">Voltar para a Loja</a>
@@ -110,6 +112,7 @@
         <div class="footer-bottom">
             <div class="container">
                 <p>&copy; 2026 Loja do Kiwi. Todos os direitos reservados.</p>
+                <p>Desenvolvido pela <a href="https://movcode.com.br/" target="_blank" style="color: var(--kiwi-dark); text-decoration: none; font-weight: 800;">MovCode</a>.</p>
             </div>
         </div>
     </footer>

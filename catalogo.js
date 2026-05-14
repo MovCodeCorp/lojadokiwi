@@ -81,6 +81,30 @@
         `;
     }
 
+    function renderCatalogoAcao(produto) {
+        if (produto.linkCompra) {
+            return `<a href="${escapeHtml(produto.linkCompra)}" class="btn-catalogo" target="_blank">${escapeHtml(produto.textoCompra || "Comprar")}</a>`;
+        }
+
+        return `<a href="${escapeHtml(produto.linkConsulta || "#")}" class="btn-catalogo btn-catalogo-secundario" target="_blank">Consultar</a>`;
+    }
+
+    function renderCatalogoCard(produto) {
+        return `
+            <div class="produto-catalogo">
+                <div class="catalogo-capa">
+                    ${renderCapa(Object.assign({}, produto, { badge: "" }))}
+                </div>
+                <div class="catalogo-info">
+                    <h3>${escapeHtml(produto.nome)}</h3>
+                    <p class="catalogo-subtitulo">${escapeHtml(produto.subtituloInicial || produto.subtitulo || produto.categoriaNome)}</p>
+                    <p class="preco-produto">${escapeHtml(produto.preco)}</p>
+                    ${renderCatalogoAcao(produto)}
+                </div>
+            </div>
+        `;
+    }
+
     function renderHome() {
         const container = document.getElementById("produtos-destaque");
 
@@ -114,7 +138,7 @@
                         <p>${escapeHtml(categoria.descricao)}</p>
                     </div>
                     <div class="grid-produtos">
-                        ${produtosDaCategoria.map(produto => renderCard(produto, "catalogo")).join("")}
+                        ${produtosDaCategoria.map(renderCatalogoCard).join("")}
                     </div>
                 </div>
             `;

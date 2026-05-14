@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Loja do Kiwi | A sua gráfica digital</title>
-
-    <meta name="description" content="Materiais digitais criativos prontos para imprimir. Papelaria personalizada, atividades infantis, presentes e muito mais.">
-
-    <link rel="icon" type="image/svg+xml" href="pin.svg">
+    <link rel="icon" type="image/svg+xml" href="imagens/pin.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,7 +17,7 @@
     <header>
         <div class="container header-container">
             <div class="logo">
-                <a href="#"><img src="logo.svg" alt="Loja do Kiwi" class="logo-img"></a>
+                <a href="#"><img src="imagens/logo.svg" alt="Loja do Kiwi" class="logo-img"></a>
             </div>
             <button class="menu-toggle" id="menuToggle">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
@@ -43,7 +41,7 @@
         </div>
         <div class="container hero-content-centered">
             
-            <img src="kiwi.svg" alt="Loja do Kiwi" class="hero-logo-main">
+            <img src="imagens/kiwi.svg" alt="Loja do Kiwi" class="hero-logo-main">
 
             <h1>A sua <span class="highlight">gráfica digital</span><br>sem complicações</h1>
             <p>Soluções criativas e materiais de alta qualidade com um design limpo e inteligente. Tudo pronto para você baixar e imprimir de onde estiver.</p>
@@ -137,7 +135,7 @@
                 <span class="section-label">Diferenciais</span>
                 <h2>Por que escolher a Loja do Kiwi?</h2>
             </div>
-            <div class="grid-vantagens">
+            <div class="grd-vantagens">  
                 <div class="item-vantagem">
                     <div class="icon-box">
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
@@ -275,7 +273,7 @@
     <footer>
         <div class="container footer-content">
             <div class="footer-logo">
-                <img src="logo.svg" alt="Loja do Kiwi" class="footer-logo-img">
+                <img src="imagens/logo.svg" alt="Loja do Kiwi" class="footer-logo-img">
                 <p>A sua gráfica digital. Praticidade, qualidade de impressão e design inteligente para o seu dia a dia.</p>
             </div>
             <div class="footer-links">
@@ -296,12 +294,13 @@
         <div class="footer-bottom">
             <div class="container">
                 <p>&copy; 2026 Loja do Kiwi. Pagamento seguro via <a href="https://kiwify.com.br/" target="_blank" style="color: var(--kiwi-dark); text-decoration: none; font-weight: 800;">Kiwify</a>.</p>
+                <p>Desenvolvido pela <a href="https://movcode.com.br/" target="_blank" style="color: var(--kiwi-dark); text-decoration: none; font-weight: 800;">MovCode</a>.</p>
             </div>
         </div>
     </footer>
  
-    <script src="produtos.js"></script>
-    <script src="catalogo.js"></script>
+    <script src="produtos.js" defer></script>
+    <script src="catalogo.js" defer></script>
     <script>
         const menuToggle = document.getElementById('menuToggle');
         const navMenu = document.getElementById('navMenu');
