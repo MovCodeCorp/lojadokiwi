@@ -1,0 +1,14 @@
+# Ignorar dependências do Node (O principal vilão do tamanho)
+node_modules/
+package-lock.json
+
+# Ignorar arquivos temporários do sistema
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Ignorar logs de erro
+npm-debug.log*
+
+# Se você tiver pastas gigantes de PDFs de teste e quiser ignorar
+# pdfs/
