@@ -88,7 +88,7 @@ document.addEventListener('click', (e) => {
 
 // --- Lógica do Slider de Produtos ---
 document.querySelectorAll('.bloco-categoria').forEach(bloco => {
-  const slider = bloco.querySelector('.slider-produtos');
+  const slider = bloco.querySelector('.slider-produtos, .slider-categorias');
   const btnEsq = bloco.querySelector('.btn-seta-esq');
   const btnDir = bloco.querySelector('.btn-seta-dir');
 
@@ -417,10 +417,23 @@ if (vitrine) {
 }
 
 
-// --- Lógica Dinâmica de Categorias (Menu e Dropdown) ---
+// --- Lógica Dinâmica de Categorias (Menu, Dropdown e Ícones SVG) ---
 const objCategorias = window.categoriasLojaKiwi;
 
 if (objCategorias) {
+  // Mapa de ícones SVG estilizados para cada categoria da loja
+  const iconesCategorias = {
+    educacao: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>`,
+    presentes: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>`,
+    cursos: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path></svg>`,
+    cristao: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"></line><line x1="5" y1="7" x2="19" y2="7"></line></svg>`,
+    diaDosNamorados: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`,
+    arteDecoracao: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>`,
+    festas: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>`,
+    etiquetas: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>`,
+    organizacao: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`,
+  };
+
   const conteudosDropdown = document.querySelectorAll('.conteudo-dropdown');
   conteudosDropdown.forEach(dropdown => {
     dropdown.innerHTML = ''; 
@@ -435,11 +448,13 @@ if (objCategorias) {
     vitrineCatHome.innerHTML = ''; 
     Object.keys(objCategorias).forEach(chave => {
       const cat = objCategorias[chave];
-      const palavraCurta = cat.nome.split(' ')[0]; 
+      
+      // Renderiza o ícone SVG correspondente da lista acima
+      const meuIconeHtml = iconesCategorias[chave] || `<span>${cat.nome.split(' ')[0]}</span>`;
 
       vitrineCatHome.innerHTML += `
         <a href="produtos.html?cat=${chave}" class="card-categoria">
-          <div class="img-categoria"><span>${palavraCurta}</span></div>
+          <div class="img-categoria">${meuIconeHtml}</div>
           <span class="titulo-categoria">${cat.nome}</span>
         </a>
       `;

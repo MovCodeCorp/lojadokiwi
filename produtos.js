@@ -784,29 +784,57 @@ window.produtosLojaKiwi = [
 ];
 
 window.categoriasLojaKiwi = {
-    educacao: {
-        nome: "Educação",
-        titulo: "Materiais Educativos",
-        descricao: "Atividades infantis, jogos e recursos pedagógicos com arquivos em alta resolução."
-    },
-    presentes: {
-        nome: "Presentes",
-        titulo: "Presentes",
-        descricao: "Arquivos para deixar lembrancinhas e datas especiais com acabamento bonito e personalizado."
-    },
-    cursos: { 
-    nome: "Cursos", 
-    titulo: "Cursos", 
-    descricao: "Formações completas e métodos recomendados pela Loja do Kiwi para impulsionar seu aprendizado." 
-  },
-    novidades: {
-        nome: "Novidades",
-        titulo: "Novidades",
-        descricao: "Fique por dentro das últimas novidades e recursos adicionados à nossa loja recentemente."
-    },
-    embreve: {
-        nome: "Em Breve",
-        titulo: "Em Breve",
-        descricao: "Mais materiais exclusivos e designs inteligentes sendo preparados com muito carinho."
-    }
+educacao: {
+    nome: "Educação",
+    titulo: "Materiais Educativos",
+    descricao: "Atividades, jogos e recursos pedagógicos para impressão."
+},
+
+presentes: {
+    nome: "Presentes",
+    titulo: "Presentes",
+    descricao: "Arquivos para lembranças e datas especiais."
+},
+
+cursos: {
+    nome: "Cursos",
+    titulo: "Cursos",
+    descricao: "Formações e materiais para desenvolvimento pessoal."
+},
+
+cristao: {
+    nome: "Cristão",
+    titulo: "Materiais Cristãos",
+    descricao: "Devocionais, versículos e recursos para fé e ministério."
+},
+
+diaDosNamorados: {
+    nome: "Dia dos Namorados",
+    titulo: "Dia dos Namorados",
+    descricao: "Arquivos românticos para surpreender quem você ama."
+},
+
+arteDecoracao: {
+    nome: "Arte e Decoração",
+    titulo: "Arte e Decoração",
+    descricao: "Quadros, posters e artes digitais para imprimir."
+},
+
+organizacao: {
+    nome: "Organização",
+    titulo: "Organização",
+    descricao: "Planners, calendários e ferramentas de produtividade."
+},
+
+festas: {
+    nome: "Festas e Eventos",
+    titulo: "Kits Festas e Eventos",
+    descricao: "Convites, topos de bolo e decorações para comemorações."
+},
+
+etiquetas: {
+    nome: "Etiquetas e Tags",
+    titulo: "Etiquetas e Rótulos",
+    descricao: "Tags de agradecimento, etiquetas escolares e adesivos organizadores."
+}
 };

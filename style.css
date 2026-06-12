@@ -381,9 +381,6 @@ body {
   }
 }
 
-
-
-
 .banner-3 { background-color: #f59e0b; aspect-ratio: 3 / 1; }
 
 .carrossel-slide img {
@@ -535,7 +532,7 @@ body {
 .slider-categorias::-webkit-scrollbar { display: none; }
 
 .card-categoria {
-  flex: 0 0 calc((100% - (20px * 5)) / 6); 
+  flex: 0 0 120px; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -749,13 +746,11 @@ body {
   .controles-slider { display: none; }
   .bloco-titulo { font-size: 18px; }
 
-  /* Limitando apenas os cards que estão dentro dos SLIDERS da Home */
+/* Libera a rolagem horizontal dos produtos no mobile */
   .slider-produtos .card-kiwi {
-    flex: 0 0 calc(50% - 8px) !important; 
+    flex: 0 0 145px !important;  /* Largura fixa ideal para o card no mobile */
     border-radius: 8px !important; 
-  }
-  .slider-produtos .card-kiwi:nth-child(n+3) { 
-    display: none !important; 
+    display: flex !important;     /* Garante que todos os produtos fiquem visíveis */
   }
 
   .ver-mais-mobile { display: block; text-align: center; padding: 16px; color: var(--verde-kiwi); text-decoration: none; font-weight: 600; font-size: 14px; margin-top: 10px; }
@@ -778,13 +773,13 @@ body {
   display: block !important;
   max-width: 1200px;
   margin: 0 auto !important;
-  padding: 0 15px !important; /* Mudado de '40px 15px 0 15px' para '0 15px' */
+  padding: 0 15px !important;
   min-height: 60vh;
 }
 
 @media (max-width: 768px) {
   .pagina-produtos-main {
-    padding: 0 15px !important; /* Mudado de '25px 15px 0 15px' para '0 15px' */
+    padding: 0 15px !important; 
   }
 }
 
@@ -1016,8 +1011,6 @@ body {
   color: var(--verde-kiwi);
   border-color: rgba(0, 0, 0, 0.02);
 }
-
-
 
 /* =========================================
    ESTILIZAÇÃO DA TELA DE DETALHES DO PRODUTO (SPA)
@@ -1272,4 +1265,19 @@ body {
     gap: 0;
     padding-top: 25px;
   }
+}
+
+/* =========================================
+   ESTILO DOS ÍCONES SVG DAS CATEGORIAS
+   ========================================= */
+.img-categoria svg {
+  width: 38px;
+  height: 38px;
+  color: #888888;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.card-categoria:hover .img-categoria svg {
+  color: var(--verde-kiwi);
+  transform: scale(1.05);
 }
