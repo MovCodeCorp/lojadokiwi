@@ -217,10 +217,8 @@ window.produtosLojaKiwi = [
   categoria: "cursos",
   categoriaNome: "Cursos",
   preco: "R$ 29,90", 
-  imagem: "imagens/combo-educacao-especial.webp", // Salve a imagem com este nome na sua pasta imagens/
-  mostrarNaInicial: true, 
-  
-  // Seu link de afiliado correto enviado na mensagem
+  imagem: "imagens/crcap.webp", 
+  mostrarNaInicial: true,
   linkCompra: "https://pay.kiwify.com.br/bzQ9LBs?afid=lhoY0QBy", 
   textoCompra: "Adquirir Material", 
   
@@ -273,9 +271,7 @@ window.produtosLojaKiwi = [
     categoriaNome: "Cursos",
     preco: "R$ 47,00", // Insira aqui o preço real do produto
     imagem: "imagens/crit2.webp", // Salve a imagem com este nome na sua pasta imagens/
-    mostrarNaInicial: false, 
-    
-    // Seu link de afiliado correto enviado na mensagem
+    mostrarNaInicial: false,
     linkCompra: "https://pay.kiwify.com.br/slnrosL?afid=estOUD9M", 
     textoCompra: "Adquirir Material", 
     
