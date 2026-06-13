@@ -105,6 +105,51 @@ window.produtosLojaKiwi = [
 /*===============================================================================================================================================*/
 /*===============================================================================================================================================*/
 
+
+ {
+  nome: "Curso Papelaria Personalizada com Canva - Do Zero ao Avançado",
+  subtitulo: "Curso Online • Conteúdo Parceiro",
+  categoria: "cursos",
+  categoriaNome: "Cursos",
+  preco: "R$ 107,90", 
+  imagem: "imagens/papelaria.webp",
+  mostrarNaInicial: true,
+  linkCompra: "https://pay.kiwify.com.br/VLQ7jvI?afid=PcloczEZ", 
+  textoCompra: "Garantir Minha Vaga", 
+  
+  descricao: "Aprenda a criar artes incríveis para papelaria personalizada usando apenas o Canva gratuito.",
+  
+  descricaoDetalhada: "O único treinamento do mercado 100% focado em transformar o Canva gratuito em uma ferramenta profissional para criar mimos e personalizados. São 40 aulas práticas e direto ao ponto para você conquistar total autonomia de criação, seja para o seu próprio ateliê ou para faturar com produtos físicos e digitais.",
+  
+  itens: [
+    "40 aulas gravadas passo a passo prontas para assistir",
+    "Método focado 100% em ferramentas gratuitas do Canva (sem precisar do Pro)",
+    "Acesso imediato às atualizações e bônus exclusivos",
+    "Foco real nos produtos mais buscados e famosos do mercado",
+    "1 ano de acesso ilimitado à área de membros na Kiwify"
+  ],
+  
+  idealPara: [
+    "Empreendedoras de papelaria personalizada que querem fidelizar clientes",
+    "Iniciantes que desejam criar suas próprias artes sem precisar baixar programas pesados",
+    "Quem busca uma oportunidade de renda extra com mimos físicos ou arquivos digitais"
+  ],
+  
+  comoUsar: [
+    "Clique no botão acima para abrir o checkout seguro da Kiwify.",
+    "Escolha a sua forma de pagamento (Pix, Cartão de Crédito em até 12x ou Boleto).",
+    "Verifique seu e-mail imediatamente após a confirmação para receber o link de acesso.",
+    "Entre na área de membros e comece a assistir às aulas de onde e quando quiser."
+  ],
+  
+  observacoes: [
+    "Curso 100% online com suporte integrado para tirar dúvidas com a produtora Gabi (Loopinha).",
+    "Garantia dupla: 7 dias de direito de arrependimento + Garantia Loopinha de 30 dias de resultados.",
+    "Acesso liberado tanto pelo computador quanto pelo celular de forma prática."
+  ]
+}, 
+  
+
 /*===============================================================================================================================================*/
 /*===============================================================================================================================================*/
 /*===============================================================================================================================================*/
