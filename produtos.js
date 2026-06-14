@@ -687,7 +687,7 @@ window.produtosLojaKiwi = [
         idealPara: ["Crianças em fase de alfabetização", "Ministério infantil", "Escola bíblica dominical", "Pais que desejam atividades cristãs em casa"],
         comoUsar: ["Compre o arquivo digital com pagamento seguro.", "Baixe o PDF na plataforma.", "Imprima as páginas que desejar no tamanho A4.", "Separe lápis de cor, giz ou canetinhas e aplique as atividades."],
         observacoes: ["Produto entregue em formato digital.", "Não inclui envio impresso.", "O acesso é vitalício para baixar e imprimir novamente quando precisar."],
-        imagem: "imagens/quemeDeus.png",
+        imagem: "imagens/quemeDeus.webp",
         imagemAlt: "Capa do Kit Quem é Deus",
         badge: "Novo",
         destaque: "Ministério Infantil",
