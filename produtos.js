@@ -652,7 +652,7 @@ window.produtosLojaKiwi = [
         idealPara: ["Ministério infantil", "Escola bíblica dominical", "Atividades em casa", "Aulas e encontros com crianças"],
         comoUsar: ["Finalize a compra pela Kiwify.", "Baixe o arquivo digital recebido após a confirmação.", "Imprima em folha A4 comum ou papel de maior gramatura.", "Use as atividades em sala, em casa ou em lembrancinhas educativas."],
         observacoes: ["Produto digital: nenhum item físico será enviado.", "As cores podem variar conforme impressora, papel e configuração de tela.", "Você pode imprimir quantas vezes precisar para uso pessoal, familiar, escolar ou ministerial."],
-        imagem: "imagens/arcadenoe.png",
+        imagem: "imagens/arcadenoe.webp",
         imagemAlt: "Capa do Kit Arca de Noé",
         badge: "Lançamento",
         destaque: "Mais vendido",
