@@ -381,13 +381,22 @@ body {
   }
 }
 
-.banner-3 { background-color: #f59e0b; aspect-ratio: 3 / 1; }
-
-.carrossel-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.banner-3 {
+  background-image: url('imagens/banner3.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  aspect-ratio: 3 / 1;
+  height: auto;
   display: block;
+}
+
+@media (max-width: 768px) {
+  .banner-3 {
+    background-image: url('imagens/banner3-mobile.png');
+    aspect-ratio: 3 / 1;
+    height: auto;
+  }
 }
 
 /* =========================================
@@ -727,14 +736,14 @@ body {
 
   .busca-container { max-width: 100%; margin-top: 12px; order: 3; }
   .nav-categorias { display: block; position: absolute; top: 100%; left: 0; width: 100%; background-color: #ffffff; max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out; border-top: none; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
-  .nav-categorias.ativo { max-height: 500px; }
+  .nav-categorias.ativo { max-height: 1000px; }
   .nav-categorias ul { flex-direction: column; gap: 0; padding: 0; }
   .nav-categorias li { width: 100%; border-bottom: 1px solid #f3f4f6; }
   .link-menu { display: flex; justify-content: space-between; padding: 16px 20px; font-size: 14px; font-weight: 500; }
   .link-menu::after { display: none; }
 
   .conteudo-dropdown { background-color: #f9fafb; max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out; }
-  .item-dropdown.aberto .conteudo-dropdown { max-height: 300px; }
+  .item-dropdown.aberto .conteudo-dropdown { max-height: 600px; }
   .item-dropdown.aberto .icone-seta { transform: rotate(180deg); }
   .conteudo-dropdown a { display: block; padding: 12px 20px 12px 35px; font-size: 13px; color: #4b5563; text-decoration: none; border-bottom: 1px solid #f3f4f6; }
 

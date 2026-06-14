@@ -1,4 +1,4 @@
-// --- Lógica Auxiliar: Cria Slugs para as URLs Amigáveis ---
+// --- Lógica Auxiliar: Criador de Slugs e Formatador de Caminho Absoluto ---
 const criarSlug = (produto) => {
   return String(produto.slug || `${produto.nome}-${produto.subtitulo}`)
     .normalize("NFD")
@@ -6,6 +6,13 @@ const criarSlug = (produto) => {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+};
+
+// Garante que a imagem sempre seja buscada da raiz do site
+const fixPath = (caminho) => {
+  if (!caminho) return '';
+  if (caminho.startsWith('http') || caminho.startsWith('/')) return caminho;
+  return `/${caminho}`;
 };
 
 // --- Lógica do Carrossel ---
@@ -124,7 +131,7 @@ const btnBuscaBotao = document.querySelector('.btn-busca');
 const realizarBusca = () => {
   const termo = inputBusca.value.trim(); 
   if (termo !== '') {
-    window.location.href = `produtos.html?busca=${encodeURIComponent(termo)}`;
+    window.location.href = `/produtos/?busca=${encodeURIComponent(termo)}`;
   }
 };
 
@@ -157,11 +164,9 @@ if (vitrine) {
   const containerAbas = document.getElementById('abas-categorias');
   const blocoHeaderInterno = document.querySelector('.bloco-header');
 
-  // FUNÇÃO REUTILIZÁVEL: Filtra, atualiza a URL e renderiza os cards na hora
   const atualizarVitrine = (catKey, termo, prodSlug, acaoHistory = 'push') => {
     const novaUrl = new URL(window.location.href);
     
-    // Configura os parâmetros de busca na barra de endereços
     if (prodSlug) {
       novaUrl.searchParams.set('produto', prodSlug);
       novaUrl.searchParams.delete('cat');
@@ -180,7 +185,6 @@ if (vitrine) {
       novaUrl.searchParams.delete('produto');
     }
 
-    // FIX DEFINITIVO: Protege o script contra erros de segurança se aberto via file:// local
     try {
       if (acaoHistory === 'push') {
         window.history.pushState({}, '', novaUrl.href);
@@ -188,10 +192,9 @@ if (vitrine) {
         window.history.replaceState({}, '', novaUrl.href);
       }
     } catch (e) {
-      console.warn("History API bloqueada localmente via file://. Use um servidor local (como a extensão Live Server do VS Code) para simular o comportamento real de navegação.");
+      console.warn("History API bloqueada localmente via file://. Utilize a extensão Live Server.");
     }
 
-    // Gerencia o estado ativo dos chips de categoria
     if (containerAbas) {
       const abas = containerAbas.querySelectorAll('.aba-item');
       abas.forEach(aba => {
@@ -205,29 +208,28 @@ if (vitrine) {
       });
     }
 
-    // CASO 1: Renderizar a Tela de Detalhes do Produto
     if (prodSlug) {
-      const produto = (window.produtosLojaKiwi || []).find(p => criarSlug(p) === prodSlug);
+      const produto = (window.produtosLojadoKiwi || []).find(p => criarSlug(p) === prodSlug);
       
       if (produto) {
         if (blocoHeaderInterno) blocoHeaderInterno.style.display = 'none';
         if (mensagemVazia) mensagemVazia.style.display = 'none';
         
-        const relacionados = (window.produtosLojaKiwi || [])
+        const relacionados = (window.produtosLojadoKiwi || [])
           .filter(p => p.categoria === produto.categoria && criarSlug(p) !== prodSlug)
           .slice(0, 2);
 
         vitrine.className = "grade-produtos-detalhe";
         vitrine.innerHTML = `
           <div class="produto-detalhe-wrapper">
-            <a href="produtos.html" class="btn-voltar-catalogo">
+            <a href="/produtos/" class="btn-voltar-catalogo">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
               Voltar ao catálogo
             </a>
             
             <div class="detalhe-hero">
               <div class="detalhe-galeria">
-                <img src="${produto.imagem}" alt="${produto.imagemAlt || produto.nome}">
+                <img src="${fixPath(produto.imagem)}" alt="${produto.imagemAlt || produto.nome}">
               </div>
               <div class="detalhe-resumo">
                 <span class="detalhe-categoria-tag">${produto.categoriaNome}</span>
@@ -299,8 +301,8 @@ if (vitrine) {
                 <h3 class="relacionados-titulo-secao">Você também pode gostar:</h3>
                 <div class="grade-produtos">
                   ${relacionados.map(p => `
-                    <a href="produtos.html?produto=${criarSlug(p)}" class="card-kiwi card-detalhe-link">
-                      <div class="img-kiwi"><img src="${p.imagem}" alt="${p.nome}"></div>
+                    <a href="/produtos/?produto=${criarSlug(p)}" class="card-kiwi card-detalhe-link">
+                      <div class="img-kiwi"><img src="${fixPath(p.imagem)}" alt="${p.nome}"></div>
                       <div class="info-kiwi">
                         <span class="preco-kiwi">${p.preco}</span>
                         <span class="titulo-kiwi">${p.nome} - ${p.subtitulo}</span>
@@ -316,15 +318,14 @@ if (vitrine) {
       }
     }
 
-    // CASO 2: Listagem Normal do Catálogo
     vitrine.className = "grade-produtos";
     
     if (blocoHeaderInterno) blocoHeaderInterno.style.display = 'flex';
-    let produtosFiltrados = window.produtosLojaKiwi || [];
+    let produtosFiltrados = window.produtosLojadoKiwi || [];
 
     if (catKey) {
       produtosFiltrados = produtosFiltrados.filter(p => p.categoria === catKey);
-      const infoCat = window.categoriasLojaKiwi && window.categoriasLojaKiwi[catKey];
+      const infoCat = window.categoriasLojadoKiwi && window.categoriasLojadoKiwi[catKey];
       if (tituloPagina) tituloPagina.innerText = infoCat ? infoCat.titulo : "Categoria";
       if (subtituloPagina) subtituloPagina.innerText = infoCat ? infoCat.descricao : `Explorando produtos.`;
     } 
@@ -356,9 +357,9 @@ if (vitrine) {
         const valorCentavos = precoPartes[1] || '00';
 
         const cardHTML = `
-          <a href="produtos.html?produto=${criarSlug(produto)}" class="card-kiwi card-detalhe-link">
+          <a href="/produtos/?produto=${criarSlug(produto)}" class="card-kiwi card-detalhe-link">
             <div class="img-kiwi">
-              <img src="${produto.imagem}" alt="${produto.imagemAlt || produto.nome}" onerror="this.style.display='none'; this.parentElement.innerHTML='<span>Arte</span>'">
+              <img src="${fixPath(produto.imagem)}" alt="${produto.imagemAlt || produto.nome}" onerror="this.style.display='none'; this.parentElement.innerHTML='<span>Arte</span>'">
             </div>
             <div class="info-kiwi">
               <span class="preco-kiwi">R$ ${valorReal}<span class="centavos-kiwi">${valorCentavos}</span></span>
@@ -371,13 +372,12 @@ if (vitrine) {
     }
   };
 
-  // Montagem dinâmica dos chips na primeira carga
-  if (containerAbas && window.categoriasLojaKiwi) {
-    containerAbas.innerHTML = `<a href="produtos.html" class="aba-item ${!categoriaAtiva && !produtoAtivo ? 'ativa' : ''}">Todos</a>`;
-    Object.keys(window.categoriasLojaKiwi).forEach(chave => {
-      const cat = window.categoriasLojaKiwi[chave];
+  if (containerAbas && window.categoriasLojadoKiwi) {
+    containerAbas.innerHTML = `<a href="/produtos/" class="aba-item ${!categoriaAtiva && !produtoAtivo ? 'ativa' : ''}">Todos</a>`;
+    Object.keys(window.categoriasLojadoKiwi).forEach(chave => {
+      const cat = window.categoriasLojadoKiwi[chave];
       const classeAtiva = (categoriaAtiva === chave && !produtoAtivo) ? 'ativa' : '';
-      containerAbas.innerHTML += `<a href="produtos.html?cat=${chave}" class="aba-item ${classeAtiva}">${cat.nome}</a>`;
+      containerAbas.innerHTML += `<a href="/produtos/?cat=${chave}" class="aba-item ${classeAtiva}">${cat.nome}</a>`;
     });
 
     containerAbas.addEventListener('click', (e) => {
@@ -390,7 +390,6 @@ if (vitrine) {
     });
   }
 
-  // Interceptador de cliques internos da vitrine
   vitrine.addEventListener('click', (e) => {
     const voltar = e.target.closest('.btn-voltar-catalogo');
     if (voltar) {
@@ -406,22 +405,17 @@ if (vitrine) {
     }
   });
 
-  // Primeira execução usa 'replace' para não duplicar o histórico na entrada
   atualizarVitrine(categoriaAtiva, termoAtivo, produtoAtivo, 'replace');
 
-  // Evento disparado quando o usuário clica em "Voltar" ou "Avançar" no navegador
   window.addEventListener('popstate', () => {
     const paramsPop = new URLSearchParams(window.location.search);
     atualizarVitrine(paramsPop.get('cat'), paramsPop.get('busca'), paramsPop.get('produto'), 'none');
   });
 }
 
-
-// --- Lógica Dinâmica de Categorias (Menu, Dropdown e Ícones SVG) ---
-const objCategorias = window.categoriasLojaKiwi;
+const objCategorias = window.categoriasLojadoKiwi;
 
 if (objCategorias) {
-  // Mapa de ícones SVG estilizados para cada categoria da loja
   const iconesCategorias = {
     educacao: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>`,
     presentes: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>`,
@@ -439,7 +433,7 @@ if (objCategorias) {
     dropdown.innerHTML = ''; 
     Object.keys(objCategorias).forEach(chave => {
       const cat = objCategorias[chave];
-      dropdown.innerHTML += `<a href="produtos.html?cat=${chave}">${cat.nome}</a>`;
+      dropdown.innerHTML += `<a href="/produtos/?cat=${chave}">${cat.nome}</a>`;
     });
   });
 
@@ -448,12 +442,10 @@ if (objCategorias) {
     vitrineCatHome.innerHTML = ''; 
     Object.keys(objCategorias).forEach(chave => {
       const cat = objCategorias[chave];
-      
-      // Renderiza o ícone SVG correspondente da lista acima
       const meuIconeHtml = iconesCategorias[chave] || `<span>${cat.nome.split(' ')[0]}</span>`;
 
       vitrineCatHome.innerHTML += `
-        <a href="produtos.html?cat=${chave}" class="card-categoria">
+        <a href="/produtos/?cat=${chave}" class="card-categoria">
           <div class="img-categoria">${meuIconeHtml}</div>
           <span class="titulo-categoria">${cat.nome}</span>
         </a>
@@ -462,11 +454,10 @@ if (objCategorias) {
   }
 }
 
-// --- Lógica de Produtos Destaques na Home (Redirecionando para Detalhes) ---
 const vitrineMaisVendidos = document.getElementById('produtos-mais-vendidos');
 
-if (vitrineMaisVendidos && window.produtosLojaKiwi) {
-  const destaques = window.produtosLojaKiwi.filter(p => p.mostrarNaInicial === true);
+if (vitrineMaisVendidos && window.produtosLojadoKiwi) {
+  const destaques = window.produtosLojadoKiwi.filter(p => p.mostrarNaInicial === true);
   vitrineMaisVendidos.innerHTML = ''; 
 
   destaques.forEach(produto => {
@@ -476,9 +467,9 @@ if (vitrineMaisVendidos && window.produtosLojaKiwi) {
     const centavos = partes[1] || '00';
 
     const cardHTML = `
-      <a href="produtos.html?produto=${criarSlug(produto)}" class="card-kiwi">
+      <a href="/produtos/?produto=${criarSlug(produto)}" class="card-kiwi">
         <div class="img-kiwi">
-          <img src="${produto.imagem}" alt="${produto.imagemAlt || produto.nome}" onerror="this.style.display='none'; this.parentElement.innerHTML='<span>Arte</span>'">
+          <img src="${fixPath(produto.imagem)}" alt="${produto.imagemAlt || produto.nome}" onerror="this.style.display='none'; this.parentElement.innerHTML='<span>Arte</span>'">
         </div>
         <div class="info-kiwi">
           <span class="preco-kiwi">R$ ${reais}<span class="centavos-kiwi">${centavos}</span></span>
@@ -490,13 +481,12 @@ if (vitrineMaisVendidos && window.produtosLojaKiwi) {
   });
 }
 
-// --- Lógica para criar blocos de categorias na Home (Redirecionando para Detalhes) ---
 const containerDinamico = document.getElementById('container-categorias-dinamicas');
 
-if (containerDinamico && window.categoriasLojaKiwi && window.produtosLojaKiwi) {
-  Object.keys(window.categoriasLojaKiwi).forEach(catKey => {
-    const catInfo = window.categoriasLojaKiwi[catKey];
-    const produtosDaCat = window.produtosLojaKiwi.filter(p => p.categoria === catKey);
+if (containerDinamico && window.categoriasLojadoKiwi && window.produtosLojadoKiwi) {
+  Object.keys(window.categoriasLojadoKiwi).forEach(catKey => {
+    const catInfo = window.categoriasLojadoKiwi[catKey];
+    const produtosDaCat = window.produtosLojadoKiwi.filter(p => p.categoria === catKey);
 
     if (produtosDaCat.length > 0) {
       const secao = document.createElement('section');
@@ -504,7 +494,7 @@ if (containerDinamico && window.categoriasLojaKiwi && window.produtosLojaKiwi) {
       secao.innerHTML = `
         <div class="bloco-header">
           <h2 class="bloco-titulo">${catInfo.titulo || catInfo.nome}</h2>
-          <a href="produtos.html?cat=${catKey}" class="ver-tudo">Ver tudo</a>
+          <a href="/produtos/?cat=${catKey}" class="ver-tudo">Ver tudo</a>
         </div>
         <div class="slider-produtos-container">
           <div class="slider-produtos">
@@ -514,9 +504,9 @@ if (containerDinamico && window.categoriasLojaKiwi && window.produtosLojaKiwi) {
               const reais = partes[0];
               const centavos = partes[1] || '00';
               return `
-              <a href="produtos.html?produto=${criarSlug(produto)}" class="card-kiwi">
+              <a href="/produtos/?produto=${criarSlug(produto)}" class="card-kiwi">
                 <div class="img-kiwi">
-                  <img src="${produto.imagem}" alt="${produto.imagemAlt || produto.nome}" onerror="this.style.display='none'; this.parentElement.innerHTML='<span>Arte</span>'">
+                  <img src="${fixPath(produto.imagem)}" alt="${produto.imagemAlt || produto.nome}" onerror="this.style.display='none'; this.parentElement.innerHTML='<span>Arte</span>'">
                 </div>
                 <div class="info-kiwi">
                   <span class="preco-kiwi">R$ ${reais}<span class="centavos-kiwi">${centavos}</span></span>
@@ -532,7 +522,6 @@ if (containerDinamico && window.categoriasLojaKiwi && window.produtosLojaKiwi) {
   });
 }
 
-// --- Lógica do Accordion (Página de Dúvidas) ---
 document.querySelectorAll('.botao-accordion').forEach(botao => {
   botao.addEventListener('click', () => {
     const itemAtual = botao.parentElement;

@@ -1,4 +1,4 @@
-window.produtosLojaKiwi = [
+window.produtosLojadoKiwi = [
 
 /*===============================================================================================================================================*/
 /*===============================================================================================================================================*/
@@ -824,7 +824,7 @@ window.produtosLojaKiwi = [
     }
 ];
 
-window.categoriasLojaKiwi = {
+window.categoriasLojadoKiwi = {
 educacao: {
     nome: "Educação",
     titulo: "Materiais Educativos",

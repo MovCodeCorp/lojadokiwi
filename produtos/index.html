@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <link rel="icon" type="image/svg+xml" href="/imagens/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Produtos - Loja do Kiwi</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
   <header class="header-kiwi">
     <div class="header-principal">
       
-      <a href="index.html" class="logo" aria-label="Ir para a Página Inicial">
-        <img src="imagens/logo.svg" alt="Loja do Kiwi" class="logo-img">
+      <a href="/" class="logo" aria-label="Ir para a Página Inicial">
+        <img src="/imagens/logo.svg" alt="Loja do Kiwi" class="logo-img">
       </a>
 
       <div class="busca-container">
@@ -41,6 +42,10 @@
 
     <nav id="menu-navegacao" class="nav-categorias">
       <ul>
+        <li><a href="/" class="link-menu">Home</a></li>
+        
+        <li><a href="/produtos/" class="link-menu">Produtos</a></li>
+        
         <li class="item-dropdown" id="btn-dropdown">
           <a href="#" class="link-menu link-dropdown">
             Categorias
@@ -49,19 +54,20 @@
             </svg>
           </a>
           <div class="conteudo-dropdown">
-            <a href="produtos.html?cat=kits">Kits Educativos</a>
-            <a href="produtos.html?cat=lembrancinhas">Lembrancinhas</a>
-            <a href="produtos.html?cat=datas">Datas Comemorativas</a>
-            <a href="produtos.html?cat=cristaos">Arquivos Cristãos</a>
+            <a href="/produtos/?cat=kits">Kits Educativos</a>
+            <a href="/produtos/?cat=lembrancinhas">Lembrancinhas</a>
+            <a href="/produtos/?cat=datas">Datas Comemorativas</a>
+            <a href="/produtos/?cat=cristaos">Arquivos Cristãos</a>
           </div>
         </li>
-        <li><a href="produtos.html" class="link-menu">Produtos</a></li>
-        <li><a href="duvidas.html" class="link-menu">Dúvidas</a></li>
-<li>
-  <a href="https://wa.me/5516982157266?text=Oi!%20Gostaria%20de%20comprar%20um%20produto%20direto%20pelo%20WhatsApp." target="_blank" class="link-menu" style="color: var(--verde-kiwi);">
-    Compre pelo WhatsApp
-  </a>
-</li>
+        
+        <li><a href="/duvidas/" class="link-menu">Dúvidas</a></li>
+        
+        <li>
+          <a href="https://wa.me/5516982157266?text=Oi!%20Gostaria%20de%20comprar%20um%20produto%20direto%20pelo%20WhatsApp." target="_blank" class="link-menu" style="color: var(--verde-kiwi);">
+            Compre pelo WhatsApp
+          </a>
+        </li>
       </ul>
     </nav>
   </header>
@@ -82,7 +88,7 @@
       <div id="mensagem-vazia" class="mensagem-vazia" style="display: none;">
         <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: #d1d5db; margin-bottom: 16px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <p>Nenhum produto encontrado para esta busca ou categoria.</p>
-        <a href="produtos.html" class="btn-ver-todos">Ver todos os produtos</a>
+        <a href="/produtos/" class="btn-ver-todos">Ver todos os produtos</a>
       </div>
       
     </div>
@@ -92,8 +98,8 @@
   <footer class="rodape-kiwi">
     <div class="rodape-container">
       <div class="rodape-coluna rodape-sobre">
-        <a href="index.html" class="rodape-logo logo-rodape">
-          <img src="imagens/logo.svg" alt="Loja do Kiwi" class="logo-img">
+        <a href="/" class="rodape-logo logo-rodape">
+          <img src="/imagens/logo.svg" alt="Loja do Kiwi" class="logo-img">
         </a>
         <p class="rodape-desc">A sua gráfica digital. Praticidade, qualidade de impressão e design inteligente para o seu dia a dia.</p>
       </div>
@@ -101,8 +107,8 @@
       <div class="rodape-coluna">
         <h3 class="rodape-titulo">Navegação</h3>
         <ul class="rodape-links">
-          <li><a href="produtos.html">Todos os Produtos</a></li>
-          <li><a href="duvidas.html">Dúvidas Frequentes</a></li>
+          <li><a href="/produtos/">Todos os Produtos</a></li>
+          <li><a href="/duvidas/">Dúvidas Frequentes</a></li>
           <li><a href="https://wa.me/5516982157266" target="_blank">Compre pelo WhatsApp</a></li>
         </ul>
       </div>
@@ -111,8 +117,8 @@
         <h3 class="rodape-titulo">Atendimento</h3>
         <ul class="rodape-links">
           <li><a href="https://www.instagram.com/alojadokiwi/" target="_blank">Instagram</a></li>
-          <li><a href="mailto:contato@lojakiwi.com.br">E-mail</a></li>
-          <li><a href="termos-de-uso.html">Termos de Uso</a></li>
+          <li><a href="mailto:contato@lojadokiwi.com.br">E-mail</a></li>
+          <li><a href="/termos-de-uso/">Termos de Uso</a></li>
         </ul>
       </div>
     </div>
@@ -131,7 +137,7 @@
     </svg>
   </a>
 
-  <script src="produtos.js"></script>
-  <script src="script.js"></script>
+  <script src="/produtos.js"></script>
+  <script src="/script.js"></script>
 </body>
 </html>
