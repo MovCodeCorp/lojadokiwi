@@ -101,7 +101,7 @@ window.produtosLojadoKiwi = [
 /*===============================================================================================================================================*/
 
 {
-  nome: "Cartão dos Votos para Casamento - Arquivo Digital",
+  nome: "Cartão de Votos para Casamento",
   subtitulo: "Arquivo Digital • Download Imediato",
   categoria: "casamento",
   categoriaNome: "casamento",
