@@ -103,8 +103,8 @@ window.produtosLojadoKiwi = [
 {
   nome: "Cartão dos Votos para Casamento - Arquivo Digital",
   subtitulo: "Arquivo Digital • Download Imediato",
-  categoria: "casamentos",
-  categoriaNome: "Casamento",
+  categoria: "casamento",
+  categoriaNome: "casamento",
   preco: "R$ 9,99",
   imagem: "imagens/cartao-dos-votos.webp",
   mostrarNaInicial: true,
