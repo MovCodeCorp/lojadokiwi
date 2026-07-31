@@ -100,6 +100,50 @@ window.produtosLojadoKiwi = [
 /*===============================================================================================================================================*/
 /*===============================================================================================================================================*/
 
+{
+  nome: "Cartão dos Votos para Casamento - Arquivo Digital",
+  subtitulo: "Arquivo Digital • Download Imediato",
+  categoria: "casamentos",
+  categoriaNome: "Casamento",
+  preco: "R$ 9,99",
+  imagem: "imagens/cartao-dos-votos.webp",
+  mostrarNaInicial: true,
+  linkCompra: "SEU_LINK_DE_COMPRA",
+  textoCompra: "Comprar Agora",
+
+  descricao: "Arquivo digital do Cartão dos Votos para emocionar os noivos e eternizar palavras especiais no grande dia.",
+
+  descricaoDetalhada: "Surpreenda os noivos com um Cartão dos Votos elegante e personalizado. Ideal para casamentos, cerimônias e recepções, o arquivo está pronto para impressão em alta qualidade e pode ser utilizado por papelarias, gráficas ou impresso em casa. Uma lembrança delicada que torna esse momento ainda mais inesquecível.",
+
+  itens: [
+    "Arquivo digital em alta resolução pronto para impressão",
+    "Design moderno e elegante",
+    "Ideal para casamentos, mini weddings e cerimônias ao ar livre",
+    "Download imediato após a confirmação do pagamento",
+    "Uso ilimitado para impressão pessoal"
+  ],
+
+  idealPara: [
+    "Noivos que desejam trocar votos de forma especial",
+    "Cerimonialistas e organizadores de eventos",
+    "Papelarias personalizadas",
+    "Quem busca uma lembrança elegante e emocionante para o casamento"
+  ],
+
+  comoUsar: [
+    "Realize a compra pelo site.",
+    "Faça o download do arquivo imediatamente após a confirmação do pagamento.",
+    "Imprima em papel de sua preferência ou envie para uma gráfica.",
+    "Escreva seus votos e torne esse momento ainda mais inesquecível."
+  ],
+
+  observacoes: [
+    "Produto exclusivamente digital. Nenhum item físico será enviado.",
+    "As cores podem variar de acordo com a tela ou impressora utilizada.",
+    "Recomendamos a impressão em papel de alta gramatura para um acabamento premium."
+  ]
+},
+ 
 /*===============================================================================================================================================*/
 /*===============================================================================================================================================*/
 /*===============================================================================================================================================*/
@@ -855,6 +899,12 @@ diaDosNamorados: {
     descricao: "Arquivos românticos para surpreender quem você ama."
 },
 
+ casamentos: {
+    nome: "Casamento",
+    titulo: "Casamento",
+    descricao:"Arquivos para convites, papelaria e lembranças de casamento.",
+ },
+ 
 arteDecoracao: {
     nome: "Arte e Decoração",
     titulo: "Arte e Decoração",
