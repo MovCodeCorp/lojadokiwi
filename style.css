@@ -1,7 +1,13 @@
 :root {
+  /* Verde da marca: uso decorativo (bordas, bolinhas, tracos, fundos grandes) */
   --verde-kiwi: #72a325;
   --verde-kiwi-hover: #5b851b;
   --verde-claro: #f0fdf4;
+  /* Verdes acessiveis: texto e botoes precisam de 4,5:1 sobre branco (WCAG AA).
+     O #72a325 so alcanca 3,01:1, por isso nao e usado em texto nem em botao. */
+  --verde-texto: #4d7215;
+  --verde-botao: #4d7215;
+  --verde-botao-hover: #3b5810;
 }
 
 * {
@@ -73,7 +79,7 @@ body {
 }
 
 .input-busca::placeholder {
-  color: #9ca3af;
+  color: #6b7280;
 }
 
 .input-busca:focus {
@@ -82,7 +88,7 @@ body {
 }
 
 .btn-busca {
-  background-color: var(--verde-kiwi);
+  background-color: var(--verde-botao);
   color: white;
   border: none;
   padding: 0 15px;
@@ -95,7 +101,7 @@ body {
 }
 
 .btn-busca:hover {
-  background-color: var(--verde-kiwi-hover);
+  background-color: var(--verde-botao-hover);
 }
 
 .btn-menu-mobile {
@@ -127,7 +133,7 @@ body {
 }
 
 .btn-compras:hover {
-  background-color: var(--verde-kiwi);
+  background-color: var(--verde-botao);
   color: #ffffff;
   border-color: var(--verde-kiwi);
 }
@@ -173,7 +179,7 @@ body {
 }
 
 .link-menu:hover {
-  color: var(--verde-kiwi);
+  color: var(--verde-texto);
 }
 
 .link-menu:hover::after {
@@ -236,7 +242,7 @@ body {
 
   .conteudo-dropdown a:hover {
     background-color: var(--verde-claro);
-    color: var(--verde-kiwi);
+    color: var(--verde-texto);
     padding-left: 24px;
   }
 }
@@ -260,14 +266,14 @@ body {
 }
 
 .btn-seta-prod:hover {
-  background-color: var(--verde-kiwi);
+  background-color: var(--verde-botao);
   color: #ffffff;
   border-color: var(--verde-kiwi);
   transform: scale(1.05);
 }
 
 .seta-carrossel:hover {
-  background-color: var(--verde-kiwi);
+  background-color: var(--verde-botao);
   color: #ffffff;
   border-color: var(--verde-kiwi);
   transform: translateY(-50%) scale(1.05); 
@@ -346,7 +352,7 @@ body {
 }
 
 .banner-1 {
-  background-image: url('imagens/banner1.png');
+  background-image: url('imagens/banner1.webp');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -357,14 +363,14 @@ body {
 
 @media (max-width: 768px) {
   .banner-1 {
-    background-image: url('imagens/banner1-mobile.png');
+    background-image: url('imagens/banner1-mobile.webp');
     aspect-ratio: 3 / 1;
     height: auto;
   }
 }
 
 .banner-2 {
-  background-image: url('imagens/banner2.png');
+  background-image: url('imagens/banner2.webp');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -375,14 +381,14 @@ body {
 
 @media (max-width: 768px) {
   .banner-2 {
-    background-image: url('imagens/banner2-mobile.png');
+    background-image: url('imagens/banner2-mobile.webp');
     aspect-ratio: 3 / 1;
     height: auto;
   }
 }
 
 .banner-3 {
-  background-image: url('imagens/banner3.png');
+  background-image: url('imagens/banner3.webp');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -393,7 +399,7 @@ body {
 
 @media (max-width: 768px) {
   .banner-3 {
-    background-image: url('imagens/banner3-mobile.png');
+    background-image: url('imagens/banner3-mobile.webp');
     aspect-ratio: 3 / 1;
     height: auto;
   }
@@ -475,7 +481,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #9ca3af;
+  color: #6b7280;
   font-size: 13px;
 }
 
@@ -520,7 +526,7 @@ body {
 }
 
 .ver-tudo {
-  color: var(--verde-kiwi);
+  color: var(--verde-texto);
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
@@ -563,7 +569,7 @@ body {
   margin-bottom: 12px;
   border: 2px solid transparent;
   transition: all 0.2s ease;
-  color: #9ca3af;
+  color: #6b7280;
   font-size: 13px;
 }
 
@@ -582,7 +588,7 @@ body {
 }
 
 .card-categoria:hover .titulo-categoria {
-  color: var(--verde-kiwi);
+  color: var(--verde-texto);
 }
 
 /* =========================================
@@ -609,7 +615,7 @@ body {
   width: 65px;
   height: 65px;
   background-color: var(--verde-claro);
-  color: var(--verde-kiwi);
+  color: var(--verde-texto);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -713,14 +719,14 @@ body {
 .rodape-titulo { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 20px; }
 .rodape-links { list-style: none; display: flex; flex-direction: column; gap: 15px; }
 .rodape-links a { text-decoration: none; color: #4b5563; font-size: 14px; transition: color 0.2s ease; }
-.rodape-links a:hover { color: var(--verde-kiwi); }
+.rodape-links a:hover { color: var(--verde-texto); }
 
 .rodape-bottom { border-top: 1px solid #f3f4f6; padding: 20px 0; }
 .rodape-bottom-container { max-width: 1200px; margin: 0 auto; padding: 0 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
-.rodape-bottom p { color: #9ca3af; font-size: 13px; }
+.rodape-bottom p { color: #6b7280; font-size: 13px; }
 
 .link-rodape-bottom { text-decoration: none; color: inherit; transition: color 0.2s ease; }
-.link-rodape-bottom:hover { color: var(--verde-kiwi); }
+.link-rodape-bottom:hover { color: var(--verde-texto); }
 
 /* =========================================
    LAYOUT CELULAR (RESPONSIVIDADE)
@@ -762,7 +768,7 @@ body {
     display: flex !important;     /* Garante que todos os produtos fiquem visíveis */
   }
 
-  .ver-mais-mobile { display: block; text-align: center; padding: 16px; color: var(--verde-kiwi); text-decoration: none; font-weight: 600; font-size: 14px; margin-top: 10px; }
+  .ver-mais-mobile { display: block; text-align: center; padding: 16px; color: var(--verde-texto); text-decoration: none; font-weight: 600; font-size: 14px; margin-top: 10px; }
 
   .card-categoria { flex: 0 0 85px; min-width: 85px; }
   .img-categoria { width: 75px; height: 75px; }
@@ -812,7 +818,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 60px 20px;
-  color: #9ca3af;
+  color: #6b7280;
   font-size: 15px;
   text-align: center;
 }
@@ -821,7 +827,7 @@ body {
   margin-top: 20px;
   display: inline-block;
   padding: 10px 24px;
-  background-color: var(--verde-kiwi);
+  background-color: var(--verde-botao);
   color: #ffffff;
   border-radius: 8px;
   text-decoration: none;
@@ -890,13 +896,13 @@ body {
 }
 
 .icone-seta-faq {
-  color: #9ca3af;
+  color: #6b7280;
   transition: transform 0.3s ease, color 0.25s ease;
   flex-shrink: 0;
 }
 
-.botao-accordion:hover .texto-pergunta { color: var(--verde-kiwi) !important; }
-.botao-accordion:hover .icone-seta-faq { color: var(--verde-kiwi); }
+.botao-accordion:hover .texto-pergunta { color: var(--verde-texto) !important; }
+.botao-accordion:hover .icone-seta-faq { color: var(--verde-texto); }
 
 .painel-resposta {
   max-height: 0;
@@ -914,13 +920,13 @@ body {
 }
 
 .item-accordion.ativo .texto-pergunta {
-  color: var(--verde-kiwi) !important;
+  color: var(--verde-texto) !important;
   font-weight: normal !important; 
 }
 
 .item-accordion.ativo .icone-seta-faq {
   transform: rotate(180deg);
-  color: var(--verde-kiwi);
+  color: var(--verde-texto);
 }
 
 @media (max-width: 768px) {
@@ -961,7 +967,7 @@ body {
   width: 50px;
   height: 50px;
   background-color: var(--verde-claro);
-  color: var(--verde-kiwi);
+  color: var(--verde-texto);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1017,7 +1023,7 @@ body {
 .aba-item:hover, 
 .aba-item.ativa {
   background-color: var(--verde-claro);
-  color: var(--verde-kiwi);
+  color: var(--verde-texto);
   border-color: rgba(0, 0, 0, 0.02);
 }
 
@@ -1046,7 +1052,7 @@ body {
 }
 
 .btn-voltar-catalogo:hover {
-  color: var(--verde-kiwi);
+  color: var(--verde-texto);
 }
 
 .detalhe-hero {
@@ -1060,6 +1066,9 @@ body {
 
 .detalhe-galeria img {
   width: 100%;
+  /* height:auto e necessario para que o aspect-ratio prevaleca sobre os
+     atributos width/height do HTML, que reservam o espaco durante o carregamento */
+  height: auto;
   aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 12px;
@@ -1071,7 +1080,7 @@ body {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--verde-kiwi);
+  color: var(--verde-texto);
   font-weight: 700;
 }
 
@@ -1112,7 +1121,7 @@ body {
   max-width: 350px;
   text-align: center;
   padding: 14px 30px;
-  background-color: var(--verde-kiwi);
+  background-color: var(--verde-botao);
   color: #ffffff;
   border-radius: 8px;
   text-decoration: none;
@@ -1123,7 +1132,7 @@ body {
 }
 
 .btn-checkout-kiwify:hover {
-  background-color: var(--verde-kiwi-hover);
+  background-color: var(--verde-botao-hover);
   transform: translateY(-1px);
 }
 
@@ -1132,7 +1141,7 @@ body {
   align-items: center;
   gap: 5px;
   font-size: 12px;
-  color: #9ca3af;
+  color: #6b7280;
   margin-top: 10px;
   padding-left: 2px;
 }
@@ -1172,7 +1181,7 @@ body {
 }
 
 .detalhe-bloco-info li svg {
-  color: var(--verde-kiwi);
+  color: var(--verde-texto);
   flex-shrink: 0;
   margin-top: 1px;
 }
@@ -1191,7 +1200,7 @@ body {
 
 .passo-numero {
   background-color: var(--verde-claro);
-  color: var(--verde-kiwi);
+  color: var(--verde-texto);
   width: 24px;
   height: 24px;
   border-radius: 50%;
@@ -1287,6 +1296,112 @@ body {
 }
 
 .card-categoria:hover .img-categoria svg {
-  color: var(--verde-kiwi);
+  color: var(--verde-texto);
   transform: scale(1.05);
+}
+/* =========================================
+   ACESSIBILIDADE
+   ========================================= */
+
+/* Conteudo lido por leitores de tela, invisivel na tela.
+   Usado no <h1> da home, que nao tem titulo visivel por escolha de layout. */
+.apenas-leitor-tela {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Foco visivel para navegacao por teclado (WCAG 2.4.7).
+   :focus-visible so aparece no teclado, nao no clique de mouse. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--verde-texto);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Link "pular para o conteudo": fica escondido ate receber foco */
+.pular-conteudo {
+  position: absolute;
+  left: 12px;
+  top: -100px;
+  z-index: 200;
+  padding: 12px 20px;
+  background-color: var(--verde-botao);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 8px 8px;
+  transition: top 0.2s ease;
+}
+
+.pular-conteudo:focus {
+  top: 0;
+}
+
+/* Areas de toque de no minimo 44x44px no celular (WCAG 2.5.8) */
+@media (max-width: 768px) {
+  .btn-menu-mobile {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .input-busca,
+  .btn-busca {
+    min-height: 44px;
+  }
+
+  .nav-categorias .link-menu,
+  .conteudo-dropdown a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .seta-carrossel {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* As bolinhas continuam pequenas na tela, mas ganham 44x44 de area de
+     toque atraves de um alvo invisivel centrado nelas. */
+  .bolinha {
+    position: relative;
+  }
+
+  .bolinha::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Respeita quem pediu menos animacao no sistema */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
