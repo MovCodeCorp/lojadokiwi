@@ -15,6 +15,42 @@ const fixPath = (caminho) => {
   return `/${caminho}`;
 };
 
+// Caminho da miniatura de 400px usada nos cards (a imagem grande fica para a
+// página de detalhe). Se a miniatura faltar, o srcset cai na imagem original.
+const caminhoThumb = (caminho) => {
+  if (!caminho || caminho.startsWith('http')) return fixPath(caminho);
+  const partes = fixPath(caminho).split('/');
+  const arquivo = partes.pop();
+  return `${partes.join('/')}/thumbs/${arquivo}`;
+};
+
+// Só entram na vitrine os produtos publicados. Um produto com
+// `publicado: false` fica cadastrado em produtos.js mas não aparece na loja —
+// é assim que se prepara um lançamento sem expor card sem imagem nem link.
+const catalogo = () => (window.produtosLojadoKiwi || []).filter(p => p.publicado !== false);
+
+// Monta o card de produto. Existe uma única vez para que lazy loading,
+// dimensões e srcset valham para todas as vitrines do site.
+const montarCard = (produto, { classeExtra = '', prioridade = false } = {}) => {
+  const [reais, centavos = '00'] = String(produto.preco).replace('R$ ', '').split(',');
+  const thumb = caminhoThumb(produto.imagem);
+  const cheia = fixPath(produto.imagem);
+  const alt = produto.imagemAlt || `${produto.nome} - ${produto.subtitulo}`;
+  return `
+    <a href="/produtos/?produto=${criarSlug(produto)}" class="card-kiwi ${classeExtra}">
+      <div class="img-kiwi">
+        <img src="${thumb}" srcset="${thumb} 400w, ${cheia} 800w" sizes="(max-width: 768px) 45vw, 200px"
+             alt="${alt}" width="400" height="400"
+             loading="${prioridade ? 'eager' : 'lazy'}" decoding="async"
+             onerror="this.onerror=null; this.src='${cheia}'">
+      </div>
+      <div class="info-kiwi">
+        <span class="preco-kiwi">R$ ${reais}<span class="centavos-kiwi">${centavos}</span></span>
+        <span class="titulo-kiwi">${produto.nome} - ${produto.subtitulo}</span>
+      </div>
+    </a>`;
+};
+
 // --- Lógica do Carrossel ---
 const track = document.getElementById('track');
 
@@ -65,14 +101,16 @@ const linkDropdown = document.querySelector('.link-dropdown');
 
 if (btnMenu && menuNav && linkDropdown) {
   btnMenu.addEventListener('click', () => {
-    btnMenu.classList.toggle('ativo');
-    menuNav.classList.toggle('ativo');
+    const aberto = btnMenu.classList.toggle('ativo');
+    menuNav.classList.toggle('ativo', aberto);
+    btnMenu.setAttribute('aria-expanded', String(aberto));
   });
 
   linkDropdown.addEventListener('click', (e) => {
     if (window.innerWidth <= 768) {
       e.preventDefault();
-      btnDropdown.classList.toggle('aberto');
+      const aberto = btnDropdown.classList.toggle('aberto');
+      linkDropdown.setAttribute('aria-expanded', String(aberto));
     }
   });
 }
@@ -82,10 +120,26 @@ const fecharMenuMobile = () => {
     btnMenu.classList.remove('ativo');
     menuNav.classList.remove('ativo');
     btnDropdown.classList.remove('aberto');
+    btnMenu.setAttribute('aria-expanded', 'false');
+    if (linkDropdown) linkDropdown.setAttribute('aria-expanded', 'false');
   }
 };
 
-window.addEventListener('scroll', fecharMenuMobile, { passive: true });
+// Fecha o menu só depois de uma rolagem de verdade. Antes fechava a qualquer
+// evento de scroll, e o próprio gesto de abrir o menu já bastava para fechá-lo.
+let posicaoAoAbrir = window.scrollY;
+window.addEventListener('scroll', () => {
+  if (!menuNav || !menuNav.classList.contains('ativo')) {
+    posicaoAoAbrir = window.scrollY;
+    return;
+  }
+  if (Math.abs(window.scrollY - posicaoAoAbrir) > 60) fecharMenuMobile();
+}, { passive: true });
+
+// Esc fecha o menu, como se espera de qualquer painel sobreposto
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') fecharMenuMobile();
+});
 
 document.addEventListener('click', (e) => {
   if (menuNav && !menuNav.contains(e.target) && btnMenu && !btnMenu.contains(e.target)) {
@@ -149,6 +203,48 @@ if (btnBuscaBotao && inputBusca) {
   });
 }
 
+// Título, descrição e tags de compartilhamento seguem o produto aberto, para
+// que um link de produto colado no WhatsApp mostre o produto certo.
+const definirMeta = (seletor, atributo, valor) => {
+  let tag = document.head.querySelector(seletor);
+  if (!tag) {
+    tag = document.createElement('meta');
+    const [chave, nome] = seletor.replace(/[[\]"']/g, '').split('meta ')[1].split('=');
+    tag.setAttribute(chave, nome);
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute(atributo, valor);
+};
+
+const META_PADRAO = {
+  titulo: document.title,
+  descricao: document.head.querySelector('meta[name="description"]')?.content || '',
+  imagem: document.head.querySelector('meta[property="og:image"]')?.content || '',
+  url: document.head.querySelector('link[rel="canonical"]')?.href || '',
+};
+
+const aplicarMetaDoProduto = (produto) => {
+  const titulo = produto ? `${produto.nome} - ${produto.subtitulo} | Loja do Kiwi` : META_PADRAO.titulo;
+  const descricao = produto ? String(produto.descricao || '').slice(0, 300) : META_PADRAO.descricao;
+  const imagem = produto ? new URL(fixPath(produto.imagem), location.origin).href : META_PADRAO.imagem;
+  const url = produto
+    ? `${location.origin}/produtos/?produto=${criarSlug(produto)}`
+    : META_PADRAO.url;
+
+  document.title = titulo;
+  definirMeta('meta[name="description"]', 'content', descricao);
+  definirMeta('meta[property="og:title"]', 'content', titulo);
+  definirMeta('meta[property="og:description"]', 'content', descricao);
+  definirMeta('meta[property="og:image"]', 'content', imagem);
+  definirMeta('meta[property="og:url"]', 'content', url);
+  definirMeta('meta[name="twitter:title"]', 'content', titulo);
+  definirMeta('meta[name="twitter:description"]', 'content', descricao);
+  definirMeta('meta[name="twitter:image"]', 'content', imagem);
+
+  const canonica = document.head.querySelector('link[rel="canonical"]');
+  if (canonica) canonica.href = url;
+};
+
 // --- Lógica da Página de Produtos (Vitrine e Detalhes Dinâmicos SPA) ---
 const vitrine = document.getElementById('vitrine-produtos');
 
@@ -209,13 +305,17 @@ if (vitrine) {
     }
 
     if (prodSlug) {
-      const produto = (window.produtosLojadoKiwi || []).find(p => criarSlug(p) === prodSlug);
+      const produto = catalogo().find(p => criarSlug(p) === prodSlug);
       
       if (produto) {
+        // O <h1> da página passa a nomear o produto: antes ficava escondido com
+        // "Todos os Produtos", deixando dois <h1> no mesmo documento.
+        if (tituloPagina) tituloPagina.innerText = `${produto.nome} - ${produto.subtitulo}`;
+        aplicarMetaDoProduto(produto);
         if (blocoHeaderInterno) blocoHeaderInterno.style.display = 'none';
         if (mensagemVazia) mensagemVazia.style.display = 'none';
         
-        const relacionados = (window.produtosLojadoKiwi || [])
+        const relacionados = catalogo()
           .filter(p => p.categoria === produto.categoria && criarSlug(p) !== prodSlug)
           .slice(0, 2);
 
@@ -229,17 +329,18 @@ if (vitrine) {
             
             <div class="detalhe-hero">
               <div class="detalhe-galeria">
-                <img src="${fixPath(produto.imagem)}" alt="${produto.imagemAlt || produto.nome}">
+                <img src="${fixPath(produto.imagem)}" alt="${produto.imagemAlt || produto.nome}"
+                     width="800" height="800" decoding="async">
               </div>
               <div class="detalhe-resumo">
                 <span class="detalhe-categoria-tag">${produto.categoriaNome}</span>
-                <h1 class="detalhe-titulo-main">${produto.nome}</h1>
-                <h2 class="detalhe-subtitulo-main">${produto.subtitulo}</h2>
+                <h2 class="detalhe-titulo-main">${produto.nome}</h2>
+                <p class="detalhe-subtitulo-main">${produto.subtitulo}</p>
                 <p class="detalhe-desc-main">${produto.descricaoDetalhada || produto.descricao}</p>
                 <div class="detalhe-preco-box">
                   <span class="detalhe-preco-tag">${produto.preco}</span>
                 </div>
-                <a href="${produto.linkCompra || '#'}" target="_blank" class="btn-checkout-kiwify">
+                <a href="${produto.linkCompra || '#'}" target="_blank" rel="noopener noreferrer" class="btn-checkout-kiwify">
                   ${produto.textoCompra || 'Adquirir Material'}
                 </a>
                 <p class="detalhe-seguro-tag">
@@ -300,15 +401,7 @@ if (vitrine) {
               <div class="detalhe-secao-relacionados">
                 <h3 class="relacionados-titulo-secao">Você também pode gostar:</h3>
                 <div class="grade-produtos">
-                  ${relacionados.map(p => `
-                    <a href="/produtos/?produto=${criarSlug(p)}" class="card-kiwi card-detalhe-link">
-                      <div class="img-kiwi"><img src="${fixPath(p.imagem)}" alt="${p.nome}"></div>
-                      <div class="info-kiwi">
-                        <span class="preco-kiwi">${p.preco}</span>
-                        <span class="titulo-kiwi">${p.nome} - ${p.subtitulo}</span>
-                      </div>
-                    </a>
-                  `).join('')}
+                  ${relacionados.map(p => montarCard(p, { classeExtra: 'card-detalhe-link' })).join('')}
                 </div>
               </div>
             ` : ''}
@@ -319,9 +412,10 @@ if (vitrine) {
     }
 
     vitrine.className = "grade-produtos";
-    
+
+    aplicarMetaDoProduto(null);
     if (blocoHeaderInterno) blocoHeaderInterno.style.display = 'flex';
-    let produtosFiltrados = window.produtosLojadoKiwi || [];
+    let produtosFiltrados = catalogo();
 
     if (catKey) {
       produtosFiltrados = produtosFiltrados.filter(p => p.categoria === catKey);
@@ -351,34 +445,27 @@ if (vitrine) {
     } else {
       if (mensagemVazia) mensagemVazia.style.display = 'none';
 
-      produtosFiltrados.forEach(produto => {
-        const precoPartes = produto.preco.replace('R$ ', '').split(',');
-        const valorReal = precoPartes[0];
-        const valorCentavos = precoPartes[1] || '00';
-
-        const cardHTML = `
-          <a href="/produtos/?produto=${criarSlug(produto)}" class="card-kiwi card-detalhe-link">
-            <div class="img-kiwi">
-              <img src="${fixPath(produto.imagem)}" alt="${produto.imagemAlt || produto.nome}" onerror="this.style.display='none'; this.parentElement.innerHTML='<span>Arte</span>'">
-            </div>
-            <div class="info-kiwi">
-              <span class="preco-kiwi">R$ ${valorReal}<span class="centavos-kiwi">${valorCentavos}</span></span>
-              <span class="titulo-kiwi">${produto.nome} - ${produto.subtitulo}</span>
-            </div>
-          </a>
-        `;
-        vitrine.innerHTML += cardHTML;
-      });
+      // Uma única escrita no DOM: antes cada produto remontava a vitrine inteira.
+      vitrine.innerHTML = produtosFiltrados
+        .map((produto, i) => montarCard(produto, {
+          classeExtra: 'card-detalhe-link',
+          prioridade: i < 4,
+        }))
+        .join('');
     }
   };
 
   if (containerAbas && window.categoriasLojadoKiwi) {
-    containerAbas.innerHTML = `<a href="/produtos/" class="aba-item ${!categoriaAtiva && !produtoAtivo ? 'ativa' : ''}">Todos</a>`;
+    // Só entram as categorias com pelo menos um produto publicado. Antes, sete
+    // das dez abas levavam a "Nenhum produto encontrado".
+    const abas = [`<a href="/produtos/" class="aba-item ${!categoriaAtiva && !produtoAtivo ? 'ativa' : ''}">Todos</a>`];
     Object.keys(window.categoriasLojadoKiwi).forEach(chave => {
+      if (!catalogo().some(p => p.categoria === chave)) return;
       const cat = window.categoriasLojadoKiwi[chave];
       const classeAtiva = (categoriaAtiva === chave && !produtoAtivo) ? 'ativa' : '';
-      containerAbas.innerHTML += `<a href="/produtos/?cat=${chave}" class="aba-item ${classeAtiva}">${cat.nome}</a>`;
+      abas.push(`<a href="/produtos/?cat=${chave}" class="aba-item ${classeAtiva}">${cat.nome}</a>`);
     });
+    containerAbas.innerHTML = abas.join('');
 
     containerAbas.addEventListener('click', (e) => {
       const link = e.target.closest('.aba-item');
@@ -428,57 +515,41 @@ if (objCategorias) {
     organizacao: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`,
   };
 
+  // Categorias sem nenhum produto publicado não entram no menu nem na vitrine:
+  // voltam sozinhas assim que o primeiro produto delas for publicado.
+  const categoriasComProduto = Object.keys(objCategorias)
+    .filter(chave => catalogo().some(p => p.categoria === chave));
+
   const conteudosDropdown = document.querySelectorAll('.conteudo-dropdown');
   conteudosDropdown.forEach(dropdown => {
-    dropdown.innerHTML = ''; 
-    Object.keys(objCategorias).forEach(chave => {
-      const cat = objCategorias[chave];
-      dropdown.innerHTML += `<a href="/produtos/?cat=${chave}">${cat.nome}</a>`;
-    });
+    dropdown.innerHTML = categoriasComProduto
+      .map(chave => `<a href="/produtos/?cat=${chave}">${objCategorias[chave].nome}</a>`)
+      .join('');
   });
 
   const vitrineCatHome = document.getElementById('vitrine-categorias-home');
   if (vitrineCatHome) {
-    vitrineCatHome.innerHTML = ''; 
-    Object.keys(objCategorias).forEach(chave => {
+    vitrineCatHome.innerHTML = categoriasComProduto.map(chave => {
       const cat = objCategorias[chave];
       const meuIconeHtml = iconesCategorias[chave] || `<span>${cat.nome.split(' ')[0]}</span>`;
-
-      vitrineCatHome.innerHTML += `
+      return `
         <a href="/produtos/?cat=${chave}" class="card-categoria">
-          <div class="img-categoria">${meuIconeHtml}</div>
+          <div class="img-categoria" aria-hidden="true">${meuIconeHtml}</div>
           <span class="titulo-categoria">${cat.nome}</span>
-        </a>
-      `;
-    });
+        </a>`;
+    }).join('');
   }
 }
 
 const vitrineMaisVendidos = document.getElementById('produtos-mais-vendidos');
 
 if (vitrineMaisVendidos && window.produtosLojadoKiwi) {
-  const destaques = window.produtosLojadoKiwi.filter(p => p.mostrarNaInicial === true);
-  vitrineMaisVendidos.innerHTML = ''; 
-
-  destaques.forEach(produto => {
-    const precoLimpo = produto.preco.replace('R$ ', '');
-    const partes = precoLimpo.split(',');
-    const reais = partes[0];
-    const centavos = partes[1] || '00';
-
-    const cardHTML = `
-      <a href="/produtos/?produto=${criarSlug(produto)}" class="card-kiwi">
-        <div class="img-kiwi">
-          <img src="${fixPath(produto.imagem)}" alt="${produto.imagemAlt || produto.nome}" onerror="this.style.display='none'; this.parentElement.innerHTML='<span>Arte</span>'">
-        </div>
-        <div class="info-kiwi">
-          <span class="preco-kiwi">R$ ${reais}<span class="centavos-kiwi">${centavos}</span></span>
-          <span class="titulo-kiwi">${produto.nome} - ${produto.subtitulo}</span>
-        </div>
-      </a>
-    `;
-    vitrineMaisVendidos.innerHTML += cardHTML;
-  });
+  // Os quatro primeiros cards são os únicos visíveis de imediato: carregam
+  // com prioridade; o resto entra sob demanda ao rolar.
+  vitrineMaisVendidos.innerHTML = catalogo()
+    .filter(p => p.mostrarNaInicial === true)
+    .map((produto, i) => montarCard(produto, { prioridade: i < 4 }))
+    .join('');
 }
 
 const containerDinamico = document.getElementById('container-categorias-dinamicas');
@@ -486,7 +557,7 @@ const containerDinamico = document.getElementById('container-categorias-dinamica
 if (containerDinamico && window.categoriasLojadoKiwi && window.produtosLojadoKiwi) {
   Object.keys(window.categoriasLojadoKiwi).forEach(catKey => {
     const catInfo = window.categoriasLojadoKiwi[catKey];
-    const produtosDaCat = window.produtosLojadoKiwi.filter(p => p.categoria === catKey);
+    const produtosDaCat = catalogo().filter(p => p.categoria === catKey);
 
     if (produtosDaCat.length > 0) {
       const secao = document.createElement('section');
@@ -498,22 +569,7 @@ if (containerDinamico && window.categoriasLojadoKiwi && window.produtosLojadoKiw
         </div>
         <div class="slider-produtos-container">
           <div class="slider-produtos">
-            ${produtosDaCat.map(produto => {
-              const precoLimpo = produto.preco.replace('R$ ', '');
-              const partes = precoLimpo.split(',');
-              const reais = partes[0];
-              const centavos = partes[1] || '00';
-              return `
-              <a href="/produtos/?produto=${criarSlug(produto)}" class="card-kiwi">
-                <div class="img-kiwi">
-                  <img src="${fixPath(produto.imagem)}" alt="${produto.imagemAlt || produto.nome}" onerror="this.style.display='none'; this.parentElement.innerHTML='<span>Arte</span>'">
-                </div>
-                <div class="info-kiwi">
-                  <span class="preco-kiwi">R$ ${reais}<span class="centavos-kiwi">${centavos}</span></span>
-                  <span class="titulo-kiwi">${produto.nome} - ${produto.subtitulo}</span>
-                </div>
-              </a>`;
-            }).join('')}
+            ${produtosDaCat.map(produto => montarCard(produto)).join('')}
           </div>
         </div>
       `;
@@ -522,24 +578,36 @@ if (containerDinamico && window.categoriasLojadoKiwi && window.produtosLojadoKiw
   });
 }
 
-document.querySelectorAll('.botao-accordion').forEach(botao => {
+document.querySelectorAll('.botao-accordion').forEach((botao, i) => {
+  const itemAtual = botao.parentElement;
+  const painel = itemAtual.querySelector('.painel-resposta');
+
+  // Leitores de tela precisam saber se a resposta está aberta e qual painel
+  // o botão controla.
+  const idPainel = `resposta-faq-${i + 1}`;
+  painel.id = idPainel;
+  botao.setAttribute('aria-expanded', 'false');
+  botao.setAttribute('aria-controls', idPainel);
+
   botao.addEventListener('click', () => {
-    const itemAtual = botao.parentElement;
-    const painel = itemAtual.querySelector('.painel-resposta');
-    
-    document.querySelectorAll('.item-accordion').forEach(outroItem => {
-      if (outroItem !== itemAtual && outroItem.classList.contains('ativo')) {
+    document.querySelectorAll('.item-accordion.ativo').forEach(outroItem => {
+      if (outroItem !== itemAtual) {
         outroItem.classList.remove('ativo');
         outroItem.querySelector('.painel-resposta').style.maxHeight = null;
+        outroItem.querySelector('.botao-accordion').setAttribute('aria-expanded', 'false');
       }
     });
 
-    itemAtual.classList.toggle('ativo');
-    
-    if (itemAtual.classList.contains('ativo')) {
-      painel.style.maxHeight = painel.scrollHeight + "px";
-    } else {
-      painel.style.maxHeight = null;
-    }
+    const aberto = itemAtual.classList.toggle('ativo');
+    botao.setAttribute('aria-expanded', String(aberto));
+    painel.style.maxHeight = aberto ? painel.scrollHeight + 'px' : null;
+  });
+});
+
+// Ao girar o celular o texto reflui e fica mais alto: sem recalcular, a
+// resposta aberta era cortada.
+window.addEventListener('resize', () => {
+  document.querySelectorAll('.item-accordion.ativo .painel-resposta').forEach(painel => {
+    painel.style.maxHeight = painel.scrollHeight + 'px';
   });
 });
