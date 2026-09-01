@@ -1,0 +1,19 @@
+# Mantém a formatação consistente entre editores.
+# Suporte nativo no VS Code (com a extensão EditorConfig), JetBrains e outros.
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+[*.py]
+indent_size = 4
+
+[*.md]
+# quebras de linha no fim podem ser significativas em Markdown
+trim_trailing_whitespace = false

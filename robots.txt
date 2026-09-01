@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# Scripts de manutenção: não têm conteúdo para buscador
+Disallow: /ferramentas/
+
 Sitemap: https://lojadokiwi.com.br/sitemap.xml

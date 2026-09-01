@@ -97,7 +97,7 @@ if (track) {
 const btnMenu = document.getElementById('btn-menu');
 const menuNav = document.getElementById('menu-navegacao');
 const btnDropdown = document.getElementById('btn-dropdown');
-const linkDropdown = document.querySelector('.link-dropdown'); 
+const linkDropdown = document.querySelector('.link-dropdown');
 
 if (btnMenu && menuNav && linkDropdown) {
   btnMenu.addEventListener('click', () => {
@@ -183,7 +183,7 @@ const inputBusca = document.querySelector('.input-busca');
 const btnBuscaBotao = document.querySelector('.btn-busca');
 
 const realizarBusca = () => {
-  const termo = inputBusca.value.trim(); 
+  const termo = inputBusca.value.trim();
   if (termo !== '') {
     window.location.href = `/produtos/?busca=${encodeURIComponent(termo)}`;
   }
@@ -262,7 +262,7 @@ if (vitrine) {
 
   const atualizarVitrine = (catKey, termo, prodSlug, acaoHistory = 'push') => {
     const novaUrl = new URL(window.location.href);
-    
+
     if (prodSlug) {
       novaUrl.searchParams.set('produto', prodSlug);
       novaUrl.searchParams.delete('cat');
@@ -306,7 +306,7 @@ if (vitrine) {
 
     if (prodSlug) {
       const produto = catalogo().find(p => criarSlug(p) === prodSlug);
-      
+
       if (produto) {
         // O <h1> da página passa a nomear o produto: antes ficava escondido com
         // "Todos os Produtos", deixando dois <h1> no mesmo documento.
@@ -314,7 +314,7 @@ if (vitrine) {
         aplicarMetaDoProduto(produto);
         if (blocoHeaderInterno) blocoHeaderInterno.style.display = 'none';
         if (mensagemVazia) mensagemVazia.style.display = 'none';
-        
+
         const relacionados = catalogo()
           .filter(p => p.categoria === produto.categoria && criarSlug(p) !== prodSlug)
           .slice(0, 2);
@@ -326,7 +326,7 @@ if (vitrine) {
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
               Voltar ao catálogo
             </a>
-            
+
             <div class="detalhe-hero">
               <div class="detalhe-galeria">
                 <img src="${fixPath(produto.imagem)}" alt="${produto.imagemAlt || produto.nome}"
@@ -360,7 +360,7 @@ if (vitrine) {
                     </ul>
                   </div>
                 ` : ''}
-                
+
                 ${produto.idealPara && produto.idealPara.length ? `
                   <div class="detalhe-bloco-info">
                     <h3>Ideal para:</h3>
@@ -422,26 +422,26 @@ if (vitrine) {
       const infoCat = window.categoriasLojadoKiwi && window.categoriasLojadoKiwi[catKey];
       if (tituloPagina) tituloPagina.innerText = infoCat ? infoCat.titulo : "Categoria";
       if (subtituloPagina) subtituloPagina.innerText = infoCat ? infoCat.descricao : `Explorando produtos.`;
-    } 
+    }
     else if (termo) {
       const termoMin = termo.toLowerCase();
-      produtosFiltrados = produtosFiltrados.filter(p => 
-        p.nome.toLowerCase().includes(termoMin) || 
+      produtosFiltrados = produtosFiltrados.filter(p =>
+        p.nome.toLowerCase().includes(termoMin) ||
         p.descricao.toLowerCase().includes(termoMin) ||
         p.subtitulo.toLowerCase().includes(termoMin)
       );
       if (tituloPagina) tituloPagina.innerText = "Resultados da Busca";
       if (subtituloPagina) subtituloPagina.innerText = `Mostrando resultados para: "${termo}"`;
-    } 
+    }
     else {
       if (tituloPagina) tituloPagina.innerText = "Todos os Produtos";
       if (subtituloPagina) subtituloPagina.innerText = "Explore nosso catálogo completo de materiais e recursos.";
     }
 
-    vitrine.innerHTML = ''; 
+    vitrine.innerHTML = '';
 
     if (produtosFiltrados.length === 0) {
-      if (mensagemVazia) mensagemVazia.style.display = 'flex'; 
+      if (mensagemVazia) mensagemVazia.style.display = 'flex';
     } else {
       if (mensagemVazia) mensagemVazia.style.display = 'none';
 
