@@ -1,14 +1,30 @@
-# Ignorar dependências do Node (O principal vilão do tamanho)
-node_modules/
-package-lock.json
-
-# Ignorar arquivos temporários do sistema
+# Arquivos temporários do sistema operacional
 .DS_Store
+._*
 Thumbs.db
 ehthumbs.db
+desktop.ini
 
-# Ignorar logs de erro
+# Editores
+.vscode/
+.idea/
+*.swp
+*~
+
+# Cache do Python (gerado pelos scripts em ferramentas/)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Imagens originais antes de passar pelo otimizar-imagens.py.
+# Guarde os originais fora do repositório: eles não vão ao ar e
+# pesariam megabytes por arquivo.
+originais/
+*.psd
+*.ai
+
+# Node, caso algum dia entre alguma ferramenta
+node_modules/
+package-lock.json
 npm-debug.log*
-
-# Se você tiver pastas gigantes de PDFs de teste e quiser ignorar
-# pdfs/
